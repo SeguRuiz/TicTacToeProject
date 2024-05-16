@@ -1,0 +1,40 @@
+body{
+
+margin: 0;
+padding: 0;
+}
+
+/*Estructura inicial*/
+.basePrincipal{
+background-color: blueviolet;
+height: 800px;
+display: grid;
+grid-template-rows: 20% auto;
+
+}
+
+.navBar{
+background-color: lightblue;
+
+}
+
+.main{
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: lightcoral;
+}
+
+/*Contenedor tic tac*/
+
+.contenedorTicTac{
+background-color: lightslategray;
+height: 85%;
+width: 50%;
+display: grid;
+gap: 10px;
+}
+
+.fila{
+background-color: lightseagreen;
+}
