@@ -1,40 +1,139 @@
-body{
-
-margin: 0;
-padding: 0;
+body {
+  margin: 0;
+  padding: 0;
 }
 
 /*Estructura inicial*/
-.basePrincipal{
-background-color: blueviolet;
-height: 800px;
-display: grid;
-grid-template-rows: 20% auto;
-
+.basePrincipal {
+  
+  height: 800px;
+  display: grid;
+  grid-template-rows: 20% auto;
 }
 
-.navBar{
-background-color: lightblue;
-
+.navBar {
+  background-color: lightblue;
 }
 
-.main{
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: lightcoral;
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 /*Contenedor tic tac*/
 
-.contenedorTicTac{
-background-color: lightslategray;
-height: 85%;
-width: 50%;
-display: grid;
-gap: 10px;
+.contenedorTicTac {
+  
+  height: 85%;
+  width: 50%;
+  display: grid;
 }
 
-.fila{
-background-color: lightseagreen;
+.fila1 {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  
+}
+.fila2 {
+  display: grid;
+  grid-template-columns: auto auto auto;
+ 
+  border-top: solid black 5px;
+  border-bottom: solid black 5px;
+}
+.fila3 {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  
+}
+
+/*Cajas y sus posiciones*/
+.contenido {
+  position: absolute;
+}
+/*fila 0*/
+.caja0_0 {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
+.caja0_1 {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  border-right: solid black 5px;
+  border-left: solid black 5px;
+}
+
+.caja0_2 {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+/*fila 1*/
+.caja1_0 {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+.caja1_1 {
+  border-right: solid black 5px;
+  border-left: solid black 5px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+.caja1_2 {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
+/*fila 2*/
+.caja2_0 {
+ margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+.caja2_1 {
+  border-right: solid black 5px;
+  border-left: solid black 5px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+.caja2_2 {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
 }
