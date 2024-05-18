@@ -226,3 +226,22 @@ body {
   align-items: center;
   font-size: 150px;
 }
+
+/*navBar*/
+.navBar{
+display: grid;
+grid-template-columns: auto 60% auto 
+}
+
+.info{
+
+display: flex;
+align-items: center;
+justify-content: center;
+border-right: solid black 5px;
+border-left: solid black 5px;
+font-size: 75px;
+}
+.infoP{
+position: absolute;
+}
