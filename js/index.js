@@ -14,6 +14,9 @@ let P2_0 = document.getElementById("P2_0");
 let P2_1 = document.getElementById("P2_1");
 let P2_2 = document.getElementById("P2_2");
 console.log(P1_0, P1_1, P1_2);
+//info al user
+let infoWin = document.getElementById("infoP");
+
 //Matriz de pruebas
 let TicTacMatriz = [
   ["", "", ""],
@@ -21,7 +24,7 @@ let TicTacMatriz = [
   ["", "", ""],
 ];
 
-let cambiosJugador = "o";
+let cambiosJugador = "O";
 let estadoJuego = "jugando";
 
 //Reflejo de valores al principal
@@ -35,21 +38,16 @@ let estadoJuego = "jugando";
 //fila 0
 
 function tocarP0_0() {
-  for (let index = 0; index < 3; index++) {
-    const empate = TicTacMatriz[index][0];
-    let contador = 0;
-
-    console.log(empate);
-  }
   if (estadoJuego == "jugando") {
     //Si no hay nada en ese espacio pon algo
     if (TicTacMatriz[0][0] == "") {
       //alterna entre o y x para referirse a los turnos de los jugadores
-      if (cambiosJugador == "o") {
-        cambiosJugador = "x";
+      if (cambiosJugador == "O") {
+        cambiosJugador = "X";
       } else {
-        cambiosJugador = "o";
+        cambiosJugador = "O";
       }
+      infoCambio(cambiosJugador);
       // hara que el valor del cambio de variable este en esa posicion de la matriz y por ende tambien el del html de esa posicion(ya que los dos estan ligados)
       TicTacMatriz[0][0] = cambiosJugador;
       P0_0.innerHTML = TicTacMatriz[0][0];
@@ -76,9 +74,10 @@ function tocarP0_0() {
         diagonal2(TicTacMatriz, cambiosJugador)
       ) {
         estadoJuego = "ganador";
-        console.log(cambiosJugador + " DEVOROOOO!!!!");
-        console.log(estadoJuego);
+        infoWin.innerHTML = cambiosJugador + " es el ganador!";
       }
+      empate(TicTacMatriz)
+      
     }
   }
 }
@@ -86,11 +85,12 @@ function tocarP0_0() {
 function tocarP0_1() {
   if (estadoJuego == "jugando") {
     if (TicTacMatriz[0][1] == "") {
-      if (cambiosJugador == "o") {
-        cambiosJugador = "x";
+      if (cambiosJugador == "O") {
+        cambiosJugador = "X";
       } else {
-        cambiosJugador = "o";
+        cambiosJugador = "O";
       }
+      infoCambio(cambiosJugador);
       TicTacMatriz[0][1] = cambiosJugador;
       P0_1.innerHTML = TicTacMatriz[0][1];
       console.log(TicTacMatriz);
@@ -106,9 +106,9 @@ function tocarP0_1() {
         diagonal2(TicTacMatriz, cambiosJugador)
       ) {
         estadoJuego = "ganador";
-        console.log(cambiosJugador + " DEVOROOOO!!!!");
-        console.log(estadoJuego);
+        infoWin.innerHTML = cambiosJugador + " es el ganador!";
       }
+      empate(TicTacMatriz)
     }
   }
 }
@@ -116,11 +116,12 @@ function tocarP0_1() {
 function tocarP0_2() {
   if (estadoJuego == "jugando") {
     if (TicTacMatriz[0][2] == "") {
-      if (cambiosJugador == "o") {
-        cambiosJugador = "x";
+      if (cambiosJugador == "O") {
+        cambiosJugador = "X";
       } else {
-        cambiosJugador = "o";
+        cambiosJugador = "O";
       }
+      infoCambio(cambiosJugador);
       TicTacMatriz[0][2] = cambiosJugador;
       P0_2.innerHTML = TicTacMatriz[0][2];
       console.log(TicTacMatriz);
@@ -136,9 +137,9 @@ function tocarP0_2() {
         diagonal2(TicTacMatriz, cambiosJugador)
       ) {
         estadoJuego = "ganador";
-        console.log(cambiosJugador + " DEVOROOOO!!!!");
-        console.log(estadoJuego);
+        infoWin.innerHTML = cambiosJugador + " es el ganador!";
       }
+      empate(TicTacMatriz)
     }
   }
 }
@@ -146,11 +147,12 @@ function tocarP0_2() {
 function tocarP1_0() {
   if (estadoJuego == "jugando") {
     if (TicTacMatriz[1][0] == "") {
-      if (cambiosJugador == "o") {
-        cambiosJugador = "x";
+      if (cambiosJugador == "O") {
+        cambiosJugador = "X";
       } else {
-        cambiosJugador = "o";
+        cambiosJugador = "O";
       }
+      infoCambio(cambiosJugador);
       TicTacMatriz[1][0] = cambiosJugador;
       P1_0.innerHTML = TicTacMatriz[1][0];
       console.log(TicTacMatriz);
@@ -166,9 +168,9 @@ function tocarP1_0() {
         diagonal2(TicTacMatriz, cambiosJugador)
       ) {
         estadoJuego = "ganador";
-        console.log(cambiosJugador + " DEVOROOOO!!!!");
-        console.log(estadoJuego);
+        infoWin.innerHTML = cambiosJugador + " es el ganador!";
       }
+      empate(TicTacMatriz)
     }
   }
 }
@@ -176,11 +178,12 @@ function tocarP1_0() {
 function tocarP1_1() {
   if (estadoJuego == "jugando") {
     if (TicTacMatriz[1][1] == "") {
-      if (cambiosJugador == "o") {
-        cambiosJugador = "x";
+      if (cambiosJugador == "O") {
+        cambiosJugador = "X";
       } else {
-        cambiosJugador = "o";
+        cambiosJugador = "O";
       }
+      infoCambio(cambiosJugador);
       TicTacMatriz[1][1] = cambiosJugador;
       P1_1.innerHTML = TicTacMatriz[1][1];
       console.log(TicTacMatriz);
@@ -195,9 +198,9 @@ function tocarP1_1() {
         diagonal2(TicTacMatriz, cambiosJugador)
       ) {
         estadoJuego = "ganador";
-        console.log(cambiosJugador + " DEVOROOOO!!!!");
-        console.log(estadoJuego);
+        infoWin.innerHTML = cambiosJugador + " es el ganador!";
       }
+      empate(TicTacMatriz)
     }
   }
 }
@@ -205,11 +208,12 @@ function tocarP1_1() {
 function tocarP1_2() {
   if (estadoJuego == "jugando") {
     if (TicTacMatriz[1][2] == "") {
-      if (cambiosJugador == "o") {
-        cambiosJugador = "x";
+      if (cambiosJugador == "O") {
+        cambiosJugador = "X";
       } else {
-        cambiosJugador = "o";
+        cambiosJugador = "O";
       }
+      infoCambio(cambiosJugador);
       TicTacMatriz[1][2] = cambiosJugador;
       P1_2.innerHTML = TicTacMatriz[1][2];
       console.log(TicTacMatriz);
@@ -225,9 +229,9 @@ function tocarP1_2() {
         diagonal2(TicTacMatriz, cambiosJugador)
       ) {
         estadoJuego = "ganador";
-        console.log(cambiosJugador + " DEVOROOOO!!!!");
-        console.log(estadoJuego);
+        infoWin.innerHTML = cambiosJugador + " es el ganador!";
       }
+      empate(TicTacMatriz)
     }
   }
 }
@@ -235,11 +239,12 @@ function tocarP1_2() {
 function tocarP2_0() {
   if (estadoJuego == "jugando") {
     if (TicTacMatriz[2][0] == "") {
-      if (cambiosJugador == "o") {
-        cambiosJugador = "x";
+      if (cambiosJugador == "O") {
+        cambiosJugador = "X";
       } else {
-        cambiosJugador = "o";
+        cambiosJugador = "O";
       }
+      infoCambio(cambiosJugador);
       TicTacMatriz[2][0] = cambiosJugador;
       P2_0.innerHTML = TicTacMatriz[2][0];
       console.log(TicTacMatriz);
@@ -255,9 +260,9 @@ function tocarP2_0() {
         diagonal2(TicTacMatriz, cambiosJugador)
       ) {
         estadoJuego = "ganador";
-        console.log(cambiosJugador + " DEVOROOOO!!!!");
-        console.log(estadoJuego);
+        infoWin.innerHTML = cambiosJugador + " es el ganador!";
       }
+      empate(TicTacMatriz)
     }
   }
 }
@@ -265,11 +270,12 @@ function tocarP2_0() {
 function tocarP2_1() {
   if (estadoJuego == "jugando") {
     if (TicTacMatriz[2][1] == "") {
-      if (cambiosJugador == "o") {
-        cambiosJugador = "x";
+      if (cambiosJugador == "O") {
+        cambiosJugador = "X";
       } else {
-        cambiosJugador = "o";
+        cambiosJugador = "O";
       }
+      infoCambio(cambiosJugador);
       TicTacMatriz[2][1] = cambiosJugador;
       P2_1.innerHTML = TicTacMatriz[2][1];
       console.log(TicTacMatriz);
@@ -285,9 +291,9 @@ function tocarP2_1() {
         diagonal2(TicTacMatriz, cambiosJugador)
       ) {
         estadoJuego = "ganador";
-        console.log(cambiosJugador + " DEVOROOOO!!!!");
-        console.log(estadoJuego);
+        infoWin.innerHTML = cambiosJugador + " es el ganador!";
       }
+      empate(TicTacMatriz)
     }
   }
 }
@@ -295,11 +301,12 @@ function tocarP2_1() {
 function tocarP2_2() {
   if (estadoJuego == "jugando") {
     if (TicTacMatriz[2][2] == "") {
-      if (cambiosJugador == "o") {
-        cambiosJugador = "x";
+      if (cambiosJugador == "O") {
+        cambiosJugador = "X";
       } else {
-        cambiosJugador = "o";
+        cambiosJugador = "O";
       }
+      infoCambio(cambiosJugador);
       TicTacMatriz[2][2] = cambiosJugador;
       P2_2.innerHTML = TicTacMatriz[2][2];
       console.log(TicTacMatriz);
@@ -315,10 +322,19 @@ function tocarP2_2() {
         diagonal2(TicTacMatriz, cambiosJugador)
       ) {
         estadoJuego = "ganador";
-        console.log(cambiosJugador + " DEVOROOOO!!!!");
-        console.log(estadoJuego);
+        infoWin.innerHTML = cambiosJugador + " es el ganador!";
       }
+      empate(TicTacMatriz)
     }
+  }
+}
+
+////////////////////////////////////////////
+function infoCambio(cambiosJugador) {
+  if (cambiosJugador == "O") {
+    infoWin.innerHTML = "Turno de X";
+  } else {
+    infoWin.innerHTML = "Turno de O";
   }
 }
 
@@ -455,3 +471,18 @@ function diagonal2(matriz, cambiosJugador) {
   }
 }
 //empate
+function empate(matriz){
+if (matriz[0][0] != "" &&
+    matriz[0][1] != "" &&
+    matriz[0][2] != "" &&
+    matriz[1][0] != "" &&
+    matriz[1][1] != "" &&
+    matriz[1][2] != "" &&
+    matriz[2][0] != "" &&
+    matriz[2][1] != "" &&
+    matriz[2][2] != ""
+    &&
+    estadoJuego == "jugando" ) {
+    infoWin.innerHTML = "Hubo un empate!"
+}
+}
