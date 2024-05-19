@@ -6,13 +6,13 @@ body {
 /*Estructura inicial*/
 .basePrincipal {
   
-  height: 800px;
+  height: 650px;
   display: grid;
-  grid-template-rows: 20% auto;
+  grid-template-rows: 10% auto;
 }
 
 .navBar {
-  background-color: lightblue;
+  background-color: ;
 }
 
 .main {
@@ -238,8 +238,8 @@ grid-template-columns: auto 60% auto
 display: flex;
 align-items: center;
 justify-content: center;
-border-right: solid black 5px;
-border-left: solid black 5px;
+border-right:  black 5px;
+border-left: black 5px;
 font-size: 75px;
 }
 .infoP{
