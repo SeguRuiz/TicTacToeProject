@@ -29,16 +29,72 @@ let hola2 = 0;
 let cambiosJugador = "O";
 let estadoJuego = "jugando";
 //movimientos del bot
+let cajasHtml = [
+  P0_0,
+  P0_1,
+  P0_2,
+  P1_0,
+  P1_1,
+  P1_2,
+  P2_0,
+  P2_1,
+  P2_2
+]
+//tic tac Matriz
+let espacios = [
+    TicTacMatriz[0][0],
+    TicTacMatriz[0][1],
+    TicTacMatriz[0][2],
+    TicTacMatriz[1][0],
+    TicTacMatriz[1][1],
+    TicTacMatriz[1][2],
+    TicTacMatriz[2][0],
+    TicTacMatriz[2][1],
+    TicTacMatriz[2][2],
+  ];
+//lee array de los objetos
+for (let c = 0; c < cajasHtml.length; c++) {
+  let revisaEspacios = cajasHtml[c];
+  
 
-//Reflejo de valores al principal
-
-//Fila 1
-
-//Fila 2
-
-//tocar coordenadas accion
-//fila 0
-
+  revisaEspacios.addEventListener('click', ()=> {
+    
+    for (let x = 0; x < espacios.length; x++) {
+      let revisaMatriz = espacios[x];
+    if (estadoJuego == "jugando") {
+      if (revisaEspacios.innerHTML == "") {
+        if (cambiosJugador == "O") {
+      cambiosJugador = "X";
+    } else {
+      cambiosJugador = "O";
+    }
+        infoCambio(cambiosJugador);
+        revisaMatriz = cambiosJugador;
+        revisaEspacios.innerHTML = revisaMatriz;
+        console.log(TicTacMatriz)
+        if (
+          fila1(TicTacMatriz, cambiosJugador) ||
+          fila2(TicTacMatriz, cambiosJugador) ||
+          fila3(TicTacMatriz, cambiosJugador) ||
+          columna1(TicTacMatriz, cambiosJugador) ||
+          columna2(TicTacMatriz, cambiosJugador) ||
+          columna3(TicTacMatriz, cambiosJugador) ||
+          diagonal(TicTacMatriz, cambiosJugador) ||
+          diagonal2(TicTacMatriz, cambiosJugador)
+        ) {
+          estadoJuego = "ganador";
+          infoWin.innerHTML = cambiosJugador + " es el ganador!";
+        }
+        empate(TicTacMatriz);
+        //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
+        //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
+      }
+    }
+  }
+  })
+  
+}
+//funciones individuales
 function tocarP0_0() {
   if (cambiosJugador == "O") {
     cambiosJugador = "X";
@@ -48,7 +104,7 @@ function tocarP0_0() {
   if (estadoJuego == "jugando") {
     //Si no hay nada en ese espacio pon algo
     if (TicTacMatriz[0][0] == "") {
-      //alterna entre o y x para referirse a los turnos de los jugadores
+      
 
       infoCambio(cambiosJugador);
       // hara que el valor del cambio de variable este en esa posicion de la matriz y por ende tambien el del html de esa posicion(ya que los dos estan ligados)
@@ -535,27 +591,25 @@ function empate(matriz) {
 
 function soloAgarreCamposEnBlanco(matriz) {
   let espacios = [
-  matriz[0][0],
-  matriz[0][1],
-  matriz[0][2],
-  matriz[1][0],
-  matriz[1][1],
-  matriz[1][2],
-  matriz[2][0],
-  matriz[2][1],
-  matriz[2][2],
- ]
+    matriz[0][0],
+    matriz[0][1],
+    matriz[0][2],
+    matriz[1][0],
+    matriz[1][1],
+    matriz[1][2],
+    matriz[2][0],
+    matriz[2][1],
+    matriz[2][2],
+  ];
 
   while (hola == 0) {
     let fila = Math.floor(Math.random() * 10);
     let vacio = espacios[fila];
 
     if (vacio == "") {
-      
       return fila;
     }
   }
-
 }
 
 /*function soloAgarreCamposEnBlanco2() {
