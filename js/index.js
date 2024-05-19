@@ -68,18 +68,20 @@ function tocarP0_0() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
       } else {
-        estadoJuego = "Bot";
-        setTimeout(
-          bot,
-          2000,
-          TicTacMatriz,
-          cambiosJugador,
-          estadoJuego,
-          soloAgarreCamposEnBlanco(TicTacMatriz)
-        );
-        setTimeout(estado, 2000)
+        if (empate(TicTacMatriz)) {
+          infoWin.innerHTML = "Hubo un empate";
+        } else {
+          estadoJuego = "Bot";
+          setTimeout(
+            bot,
+            1000,
+            TicTacMatriz,
+            cambiosJugador,
+            soloAgarreCamposEnBlanco(TicTacMatriz)
+          );
+          setTimeout(estado, 2000);
+        }
       }
-      empate(TicTacMatriz);
       console.log(TicTacMatriz);
     }
   }
@@ -92,7 +94,6 @@ function tocarP0_1() {
       infoCambio(cambiosJugador);
       TicTacMatriz[0][1] = cambiosJugador;
       P0_1.innerHTML = TicTacMatriz[0][1];
-
       if (
         fila1(TicTacMatriz, cambiosJugador) ||
         fila2(TicTacMatriz, cambiosJugador) ||
@@ -106,20 +107,21 @@ function tocarP0_1() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
       } else {
-        estadoJuego = "Bot";
-        setTimeout(
-          bot,
-          2000,
-          TicTacMatriz,
-          cambiosJugador,
-          estadoJuego,
-          soloAgarreCamposEnBlanco(TicTacMatriz)
-        );
-         setTimeout(estado, 2000)
+        if (empate(TicTacMatriz)) {
+          infoWin.innerHTML = "Hubo un empate";
+        } else {
+          estadoJuego = "Bot";
+          setTimeout(
+            bot,
+            1000,
+            TicTacMatriz,
+            cambiosJugador,
+            soloAgarreCamposEnBlanco(TicTacMatriz)
+          );
+          setTimeout(estado, 2000);
+        }
       }
-      empate(TicTacMatriz);
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-      console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
 
       console.log(TicTacMatriz);
     }
@@ -133,7 +135,6 @@ function tocarP0_2() {
       infoCambio(cambiosJugador);
       TicTacMatriz[0][2] = cambiosJugador;
       P0_2.innerHTML = TicTacMatriz[0][2];
-
       if (
         fila1(TicTacMatriz, cambiosJugador) ||
         fila2(TicTacMatriz, cambiosJugador) ||
@@ -147,20 +148,21 @@ function tocarP0_2() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
       } else {
-        estadoJuego = "Bot";
-        setTimeout(
-          bot,
-          2000,
-          TicTacMatriz,
-          cambiosJugador,
-          estadoJuego,
-          soloAgarreCamposEnBlanco(TicTacMatriz)
-        );
-         setTimeout(estado, 2000)
+        if (empate(TicTacMatriz)) {
+          infoWin.innerHTML = "Hubo un empate";
+        } else {
+          estadoJuego = "Bot";
+          setTimeout(
+            bot,
+            1000,
+            TicTacMatriz,
+            cambiosJugador,
+            soloAgarreCamposEnBlanco(TicTacMatriz)
+          );
+          setTimeout(estado, 2000);
+        }
       }
-      empate(TicTacMatriz);
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-      console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
 
       console.log(TicTacMatriz);
     }
@@ -174,7 +176,6 @@ function tocarP1_0() {
       infoCambio(cambiosJugador);
       TicTacMatriz[1][0] = cambiosJugador;
       P1_0.innerHTML = TicTacMatriz[1][0];
-
       if (
         fila1(TicTacMatriz, cambiosJugador) ||
         fila2(TicTacMatriz, cambiosJugador) ||
@@ -188,20 +189,21 @@ function tocarP1_0() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
       } else {
-        estadoJuego = "Bot";
-        setTimeout(
-          bot,
-          2000,
-          TicTacMatriz,
-          cambiosJugador,
-          estadoJuego,
-          soloAgarreCamposEnBlanco(TicTacMatriz)
-        );
-         setTimeout(estado, 2000)
+        if (empate(TicTacMatriz)) {
+          infoWin.innerHTML = "Hubo un empate";
+        } else {
+          estadoJuego = "Bot";
+          setTimeout(
+            bot,
+            1000,
+            TicTacMatriz,
+            cambiosJugador,
+            soloAgarreCamposEnBlanco(TicTacMatriz)
+          );
+          setTimeout(estado, 2000);
+        }
       }
-      empate(TicTacMatriz);
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-      console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
 
       console.log(TicTacMatriz);
     }
@@ -215,7 +217,6 @@ function tocarP1_1() {
       infoCambio(cambiosJugador);
       TicTacMatriz[1][1] = cambiosJugador;
       P1_1.innerHTML = TicTacMatriz[1][1];
-
       if (
         fila1(TicTacMatriz, cambiosJugador) ||
         fila2(TicTacMatriz, cambiosJugador) ||
@@ -229,20 +230,21 @@ function tocarP1_1() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
       } else {
-        estadoJuego = "Bot";
-        setTimeout(
-          bot,
-          2000,
-          TicTacMatriz,
-          cambiosJugador,
-          estadoJuego,
-          soloAgarreCamposEnBlanco(TicTacMatriz)
-        );
-         setTimeout(estado, 2000)
+        if (empate(TicTacMatriz)) {
+          infoWin.innerHTML = "Hubo un empate";
+        } else {
+          estadoJuego = "Bot";
+          setTimeout(
+            bot,
+            1000,
+            TicTacMatriz,
+            cambiosJugador,
+            soloAgarreCamposEnBlanco(TicTacMatriz)
+          );
+          setTimeout(estado, 2000);
+        }
       }
-      empate(TicTacMatriz);
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-      console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
 
       console.log(TicTacMatriz);
     }
@@ -256,7 +258,6 @@ function tocarP1_2() {
       infoCambio(cambiosJugador);
       TicTacMatriz[1][2] = cambiosJugador;
       P1_2.innerHTML = TicTacMatriz[1][2];
-
       if (
         fila1(TicTacMatriz, cambiosJugador) ||
         fila2(TicTacMatriz, cambiosJugador) ||
@@ -270,20 +271,22 @@ function tocarP1_2() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
       } else {
-        estadoJuego = "Bot";
-        setTimeout(
-          bot,
-          2000,
-          TicTacMatriz,
-          cambiosJugador,
-          estadoJuego,
-          soloAgarreCamposEnBlanco(TicTacMatriz)
-        );
-         setTimeout(estado, 2000)
+        if (empate(TicTacMatriz)) {
+          infoWin.innerHTML = "Hubo un empate";
+        } else {
+          estadoJuego = "Bot";
+          setTimeout(
+            bot,
+            1000,
+            TicTacMatriz,
+            cambiosJugador,
+            soloAgarreCamposEnBlanco(TicTacMatriz)
+          );
+          setTimeout(estado, 2000);
+        }
       }
-      empate(TicTacMatriz);
+
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-      console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
 
       console.log(TicTacMatriz);
     }
@@ -297,7 +300,6 @@ function tocarP2_0() {
       infoCambio(cambiosJugador);
       TicTacMatriz[2][0] = cambiosJugador;
       P2_0.innerHTML = TicTacMatriz[2][0];
-
       if (
         fila1(TicTacMatriz, cambiosJugador) ||
         fila2(TicTacMatriz, cambiosJugador) ||
@@ -311,21 +313,21 @@ function tocarP2_0() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
       } else {
-        estadoJuego = "Bot";
-        setTimeout(
-          bot,
-          2000,
-          TicTacMatriz,
-          cambiosJugador,
-          estadoJuego,
-          soloAgarreCamposEnBlanco(TicTacMatriz)
-        );
-         setTimeout(estado, 2000)
+        if (empate(TicTacMatriz)) {
+          infoWin.innerHTML = "Hubo un empate";
+        } else {
+          estadoJuego = "Bot";
+          setTimeout(
+            bot,
+            1000,
+            TicTacMatriz,
+            cambiosJugador,
+            soloAgarreCamposEnBlanco(TicTacMatriz)
+          );
+          setTimeout(estado, 2000);
+        }
       }
-      empate(TicTacMatriz);
-      estadoJuego = "jugando";
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-      console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
     }
   }
 }
@@ -337,7 +339,6 @@ function tocarP2_1() {
       infoCambio(cambiosJugador);
       TicTacMatriz[2][1] = cambiosJugador;
       P2_1.innerHTML = TicTacMatriz[2][1];
-
       if (
         fila1(TicTacMatriz, cambiosJugador) ||
         fila2(TicTacMatriz, cambiosJugador) ||
@@ -351,20 +352,22 @@ function tocarP2_1() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
       } else {
-        estadoJuego = "Bot";
-        setTimeout(
-          bot,
-          2000,
-          TicTacMatriz,
-          cambiosJugador,
-          estadoJuego,
-          soloAgarreCamposEnBlanco(TicTacMatriz)
-        );
-         setTimeout(estado, 2000)
+        if (empate(TicTacMatriz)) {
+          infoWin.innerHTML = "Hubo un empate";
+        } else {
+          estadoJuego = "Bot";
+          setTimeout(
+            bot,
+            1000,
+            TicTacMatriz,
+            cambiosJugador,
+            soloAgarreCamposEnBlanco(TicTacMatriz)
+          );
+          setTimeout(estado, 2000);
+        }
       }
-      empate(TicTacMatriz);
+
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-      console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
 
       console.log(TicTacMatriz);
     }
@@ -378,7 +381,6 @@ function tocarP2_2() {
       infoCambio(cambiosJugador);
       TicTacMatriz[2][2] = cambiosJugador;
       P2_2.innerHTML = TicTacMatriz[2][2];
-
       if (
         fila1(TicTacMatriz, cambiosJugador) ||
         fila2(TicTacMatriz, cambiosJugador) ||
@@ -392,20 +394,22 @@ function tocarP2_2() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
       } else {
-        estadoJuego = "Bot";
-        setTimeout(
-          bot,
-          2000,
-          TicTacMatriz,
-          cambiosJugador,
-          estadoJuego,
-          soloAgarreCamposEnBlanco(TicTacMatriz)
-        );
-         setTimeout(estado, 2000)
+        if (empate(TicTacMatriz)) {
+          infoWin.innerHTML = "Hubo un empate";
+        } else {
+          estadoJuego = "Bot";
+          setTimeout(
+            bot,
+            1000,
+            TicTacMatriz,
+            cambiosJugador,
+            soloAgarreCamposEnBlanco(TicTacMatriz)
+          );
+          setTimeout(estado, 2000);
+        }
       }
-      empate(TicTacMatriz);
+
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-      console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
 
       console.log(TicTacMatriz);
     }
@@ -546,18 +550,19 @@ function empate(matriz) {
     matriz[1][2] != "" &&
     matriz[2][0] != "" &&
     matriz[2][1] != "" &&
-    matriz[2][2] != "" &&
-    estadoJuego == "jugando"
+    matriz[2][2] != ""
   ) {
-    infoWin.innerHTML = "Hubo un empate!";
+    return true;
+  } else {
+    return false;
   }
 }
 //funcion bot
-function bot(matriz, cambiosJugador, estadoJuego, coordenadas) {
-  estadoJuego = "jugando";
+function bot(matriz, cambiosJugador, coordenadas) {
+  estadoJuego = "Bot";
   cambiosJugador = "O";
   console.log(cambiosJugador);
-  if (estadoJuego == "jugando") {
+  if (estadoJuego == "Bot") {
     infoCambio(cambiosJugador);
     matriz[coordenadas[0]][coordenadas[1]] = cambiosJugador;
 
@@ -584,8 +589,11 @@ function bot(matriz, cambiosJugador, estadoJuego, coordenadas) {
     ) {
       estadoJuego = "ganador";
       infoWin.innerHTML = cambiosJugador + " es el ganador!";
+    } else {
+      if (empate(TicTacMatriz)) {
+        infoWin.innerHTML = "Hubo un empate";
+      }
     }
-    empate(TicTacMatriz);
   }
 }
 
