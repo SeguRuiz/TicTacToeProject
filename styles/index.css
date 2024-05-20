@@ -168,6 +168,7 @@ padding: 0;
   font-size: 150px;
   border-right: solid black 5px;
   border-left: solid black 5px;
+  
 }
 
 .caja0_2 {
@@ -250,4 +251,52 @@ font-size: 70px;
 }
 .infoP{
 position: absolute;
+}
+
+/*3 en raya ganes*/
+.fila1Gane{
+
+position: absolute;
+visibility: hidden;
+
+}
+.fila2Gane{
+
+position: absolute;
+visibility: hidden;
+
+}
+.fila3Gane{
+
+position: absolute;
+visibility: hidden;
+
+}
+
+.fila1GaneDiagonal{
+position: absolute;
+transform: rotate(135deg);
+visibility: hidden;
+}
+
+.fila1GaneDiagonal2{
+position: absolute;
+transform: rotate(45deg);
+visibility: hidden;
+}
+.columna1gane{
+position: absolute;
+visibility: hidden;
+transform: rotate(90deg);
+}
+.columna2gane{
+position: absolute;
+visibility: hidden;
+transform: rotate(90deg);
+}
+
+.columna3gane{
+position: absolute;
+visibility: hidden;
+transform: rotate(90deg);
 }
