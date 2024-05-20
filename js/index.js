@@ -16,8 +16,17 @@ let P2_2 = document.getElementById("P2_2");
 
 //info al user
 let infoWin = document.getElementById("infoP");
-
+//btn restart
+let btnRestart = document.getElementById('btnRestart')
+//restart informacion
+function restart(){
+infoWin.innerHTML = '¿Restart?'
+infoWin.addEventListener('click', ()=>{
+window.location.reload()
+})
+}
 //Matriz de pruebas
+
 let TicTacMatriz = [
   ["", "", ""],
   ["", "", ""],
@@ -34,27 +43,27 @@ let cajasHtml = [P0_0, P0_1, P0_2, P1_0, P1_1, P1_2, P2_0, P2_1, P2_2];
 
 //funciones individuales
 function tocarP0_0() {
+//Los toques solo ocurriran si el estado de juego siguen en "jugando" asi como el cambio de O a X
+//Esto para evitar errores como que al ganar se pueda seguir jugando
   if (estadoJuego == "jugando") {
-    //Si no hay nada en ese espacio pon algo
     if (TicTacMatriz[0][0] == "") {
+      //evaluara si es el campo tocado esta en blanco en la matriz, esto para evitar un error de que
+      //al tocar un campo ya utilizado el bot juegue o se cambie de O a X y viceversa
       cambiosJugador = "X";
-
+      //cuando el jugador toque cambiara a X 
       infoCambio(cambiosJugador);
-      // hara que el valor del cambio de variable este en esa posicion de la matriz y por ende tambien el del html de esa posicion(ya que los dos estan ligados)
+      //InfoCambio muestra en el texto informativo si el turno del jugador ocurre o el del bot
+      
       TicTacMatriz[0][0] = cambiosJugador;
+      //Luego igualo cambios jugador(que son las X) a la matriz principal, que su contenido se muestre 
+      //En el campo tocado(TicTacMatriz)
       P0_0.innerHTML = TicTacMatriz[0][0];
-
-      /*if (
-        TicTacMatriz[0][0] == 'x' &&
-        TicTacMatriz[0][1] == "x" &&
-        TicTacMatriz[0][2] == "x"
-      ) {
-        estadoJuego = "ganador";
-        console.log("LA X DEVORO!!!!111!!!");
-        console.log(estadoJuego);
-      }*/
+      //Luego el innerHtml del campo tocado sera igual al de la matriz asi la informacion de la matriz sera
+      //reflejado al espacio indicado en el html del DOM
 
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
+      //Luego siguen las comprobaciones de gane
+      //Primeramente comprobara los ganes en caso de que haya un gane con tablero lleno y tome de primero el gane
       if (
         fila1(TicTacMatriz, cambiosJugador) ||
         fila2(TicTacMatriz, cambiosJugador) ||
@@ -64,12 +73,21 @@ function tocarP0_0() {
         columna3(TicTacMatriz, cambiosJugador) ||
         diagonal(TicTacMatriz, cambiosJugador) ||
         diagonal2(TicTacMatriz, cambiosJugador)
+
       ) {
+        //si hay un gane el estado de juego pasara a "ganador" por ende los toques quedan bloqueados 
+        //Y asi no se podra jugar cuando haya un gane.
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
+        setTimeout(restart, 1000)
+        
+        //Luego mostrara el gane 
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
+          setTimeout(restart, 1000)
+          
+         
         } else {
           estadoJuego = "Bot";
           setTimeout(
@@ -79,7 +97,7 @@ function tocarP0_0() {
             cambiosJugador,
             soloAgarreCamposEnBlanco(TicTacMatriz)
           );
-          setTimeout(estado, 2000);
+          setTimeout(estado, 1000);
         }
       }
       console.log(TicTacMatriz);
@@ -106,9 +124,11 @@ function tocarP0_1() {
       ) {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
+        setTimeout(restart, 1000)
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
+          setTimeout(restart, 1000)
         } else {
           estadoJuego = "Bot";
           setTimeout(
@@ -118,7 +138,7 @@ function tocarP0_1() {
             cambiosJugador,
             soloAgarreCamposEnBlanco(TicTacMatriz)
           );
-          setTimeout(estado, 2000);
+          setTimeout(estado, 1000);
         }
       }
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
@@ -147,9 +167,11 @@ function tocarP0_2() {
       ) {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
+        setTimeout(restart, 1000)
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
+          setTimeout(restart, 1000)
         } else {
           estadoJuego = "Bot";
           setTimeout(
@@ -159,7 +181,7 @@ function tocarP0_2() {
             cambiosJugador,
             soloAgarreCamposEnBlanco(TicTacMatriz)
           );
-          setTimeout(estado, 2000);
+          setTimeout(estado, 1000);
         }
       }
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
@@ -188,9 +210,11 @@ function tocarP1_0() {
       ) {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
+        setTimeout(restart, 1000)
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
+          setTimeout(restart, 1000)
         } else {
           estadoJuego = "Bot";
           setTimeout(
@@ -200,7 +224,7 @@ function tocarP1_0() {
             cambiosJugador,
             soloAgarreCamposEnBlanco(TicTacMatriz)
           );
-          setTimeout(estado, 2000);
+          setTimeout(estado, 1000);
         }
       }
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
@@ -229,9 +253,11 @@ function tocarP1_1() {
       ) {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
+        setTimeout(restart, 1000)
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
+          setTimeout(restart, 1000)
         } else {
           estadoJuego = "Bot";
           setTimeout(
@@ -241,7 +267,7 @@ function tocarP1_1() {
             cambiosJugador,
             soloAgarreCamposEnBlanco(TicTacMatriz)
           );
-          setTimeout(estado, 2000);
+          setTimeout(estado, 1000);
         }
       }
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
@@ -270,9 +296,11 @@ function tocarP1_2() {
       ) {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
+        setTimeout(restart, 1000)
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
+          setTimeout(restart, 1000)
         } else {
           estadoJuego = "Bot";
           setTimeout(
@@ -282,7 +310,7 @@ function tocarP1_2() {
             cambiosJugador,
             soloAgarreCamposEnBlanco(TicTacMatriz)
           );
-          setTimeout(estado, 2000);
+          setTimeout(estado, 1000);
         }
       }
 
@@ -312,9 +340,11 @@ function tocarP2_0() {
       ) {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
+        setTimeout(restart, 1000)
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
+          setTimeout(restart, 1000)
         } else {
           estadoJuego = "Bot";
           setTimeout(
@@ -324,7 +354,7 @@ function tocarP2_0() {
             cambiosJugador,
             soloAgarreCamposEnBlanco(TicTacMatriz)
           );
-          setTimeout(estado, 2000);
+          setTimeout(estado, 1000);
         }
       }
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
@@ -351,9 +381,11 @@ function tocarP2_1() {
       ) {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
+        setTimeout(restart, 1000)
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
+          setTimeout(restart, 1000)
         } else {
           estadoJuego = "Bot";
           setTimeout(
@@ -363,7 +395,7 @@ function tocarP2_1() {
             cambiosJugador,
             soloAgarreCamposEnBlanco(TicTacMatriz)
           );
-          setTimeout(estado, 2000);
+          setTimeout(estado, 1000);
         }
       }
 
@@ -393,9 +425,11 @@ function tocarP2_2() {
       ) {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
+        setTimeout(restart, 1000)
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
+          setTimeout(restart, 1000)
         } else {
           estadoJuego = "Bot";
           setTimeout(
@@ -405,7 +439,7 @@ function tocarP2_2() {
             cambiosJugador,
             soloAgarreCamposEnBlanco(TicTacMatriz)
           );
-          setTimeout(estado, 2000);
+          setTimeout(estado, 1000);
         }
       }
 
@@ -589,9 +623,11 @@ function bot(matriz, cambiosJugador, coordenadas) {
     ) {
       estadoJuego = "ganador";
       infoWin.innerHTML = cambiosJugador + " es el ganador!";
+      btnRestart.style.visibility = 'visible'
     } else {
       if (empate(TicTacMatriz)) {
         infoWin.innerHTML = "Hubo un empate";
+        btnRestart.style.visibility = 'visible'
       }
     }
   }
