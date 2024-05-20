@@ -8,26 +8,32 @@ body {
   
   height: 650px;
   display: grid;
-  grid-template-rows: 10% auto;
+  grid-template-rows: 10% auto ;
 }
 
 .navBar {
-  background-color: ;
+  background-color: lightblue;
 }
 
 .main {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  background-color: lightcoral;
+}
+.footer{
+display: flex;
+justify-content: center;
+background-color:lightslategray;
+padding: 0;
+
 }
 
 /*Contenedor tic tac*/
 
 .contenedorTicTac {
-  
-  height: 85%;
-  width: 50%;
+  height: 80%;
+  width: 40%;
   display: grid;
 }
 
@@ -51,8 +57,9 @@ body {
 
 /*Cajas y sus posiciones*/
 .P0_0 {
-  height: 178px;
-  width: 150px;
+  
+  height: 150px;
+  width: 160px;
   
   position: absolute;
   display: flex;
@@ -61,8 +68,8 @@ body {
 }
 
 .P0_1 {
-  height: 178px;
-  width: 150px;
+  height: 150px;
+  width: 160px;
   
   position: absolute;
   display: flex;
@@ -71,8 +78,8 @@ body {
 }
 
 .P0_2 {
-  height: 178px;
-  width: 150px;
+  height: 150px;
+  width: 160px;
   
   position: absolute;
   display: flex;
@@ -81,8 +88,8 @@ body {
 }
 
 .P1_0 {
-  height: 178px;
-  width: 150px;
+  height: 150px;
+  width: 160px;
  
   position: absolute;
   display: flex;
@@ -93,8 +100,8 @@ body {
 
 
 .P1_1 {
-  height: 178px;
-  width: 150px;
+  height: 150px;
+  width: 160px;
   
   position: absolute;
   display: flex;
@@ -104,8 +111,8 @@ body {
 
 
 .P1_2 {
-  height: 178px;
-  width: 150px;
+  height: 150px;
+  width: 160px;
  
   position: absolute;
   display: flex;
@@ -114,8 +121,8 @@ body {
 }
 
 .P2_0 {
-  height: 178px;
-  width: 150px;
+  height: 150px;
+  width: 160px;
   
   position: absolute;
   display: flex;
@@ -124,8 +131,8 @@ body {
 }
 
 .P2_1 {
-  height: 178px;
-  width: 150px;
+  height: 150px;
+  width: 160px;
   
   position: absolute;
   display: flex;
@@ -133,8 +140,8 @@ body {
   align-items: center;
 }
 .P2_2 {
-  height: 178px;
-  width: 150px;
+  height: 150px;
+  width: 160px;
   
   position: absolute;
   display: flex;
@@ -234,13 +241,12 @@ grid-template-columns: auto 60% auto
 }
 
 .info{
-
 display: flex;
 align-items: center;
 justify-content: center;
-border-right:  black 5px;
-border-left: black 5px;
-font-size: 75px;
+border-right: solid black 5px;
+border-left:solid black 5px;
+font-size: 70px;
 }
 .infoP{
 position: absolute;
