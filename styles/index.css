@@ -12,22 +12,16 @@ body {
 }
 
 .navBar {
-  background-color: lightblue;
+  background-color: ;
 }
 
 .main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightcoral;
+  background-color: ;
 }
-.footer{
-display: flex;
-justify-content: center;
-background-color:lightslategray;
-padding: 0;
 
-}
 
 /*Contenedor tic tac*/
 
