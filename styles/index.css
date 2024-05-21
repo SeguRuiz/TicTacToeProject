@@ -5,23 +5,33 @@ body {
 
 /*Estructura inicial*/
 .basePrincipal {
-  
   height: 650px;
   display: grid;
-  grid-template-rows: 10% auto ;
+  grid-template-rows: 10% auto;
 }
 
 .navBar {
   background-color: ;
 }
 
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.restartSvg{
+  height: 200px; width: 200px; position: absolute;
+  visibility: hidden;
+}
+
+
 .main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ;
+  
 }
-
 
 /*Contenedor tic tac*/
 
@@ -34,27 +44,24 @@ body {
 .fila1 {
   display: grid;
   grid-template-columns: auto auto auto;
-  
 }
 .fila2 {
   display: grid;
   grid-template-columns: auto auto auto;
- 
+
   border-top: solid black 5px;
   border-bottom: solid black 5px;
 }
 .fila3 {
   display: grid;
   grid-template-columns: auto auto auto;
-  
 }
 
 /*Cajas y sus posiciones*/
 .P0_0 {
-  
   height: 150px;
   width: 160px;
-  
+
   position: absolute;
   display: flex;
   justify-content: center;
@@ -64,7 +71,7 @@ body {
 .P0_1 {
   height: 150px;
   width: 160px;
-  
+
   position: absolute;
   display: flex;
   justify-content: center;
@@ -74,7 +81,7 @@ body {
 .P0_2 {
   height: 150px;
   width: 160px;
-  
+
   position: absolute;
   display: flex;
   justify-content: center;
@@ -84,30 +91,27 @@ body {
 .P1_0 {
   height: 150px;
   width: 160px;
- 
+
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-
 
 .P1_1 {
   height: 150px;
   width: 160px;
-  
+
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-
 .P1_2 {
   height: 150px;
   width: 160px;
- 
+
   position: absolute;
   display: flex;
   justify-content: center;
@@ -117,7 +121,7 @@ body {
 .P2_0 {
   height: 150px;
   width: 160px;
-  
+
   position: absolute;
   display: flex;
   justify-content: center;
@@ -127,7 +131,7 @@ body {
 .P2_1 {
   height: 150px;
   width: 160px;
-  
+
   position: absolute;
   display: flex;
   justify-content: center;
@@ -136,7 +140,7 @@ body {
 .P2_2 {
   height: 150px;
   width: 160px;
-  
+
   position: absolute;
   display: flex;
   justify-content: center;
@@ -162,7 +166,6 @@ body {
   font-size: 150px;
   border-right: solid black 5px;
   border-left: solid black 5px;
-  
 }
 
 .caja0_2 {
@@ -203,7 +206,7 @@ body {
 
 /*fila 2*/
 .caja2_0 {
- margin: 0;
+  margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -230,67 +233,61 @@ body {
 }
 
 /*navBar*/
-.navBar{
-display: grid;
-grid-template-columns: auto 60% auto 
+.navBar {
+  display: grid;
+  grid-template-columns: 25% 50% 25% ;
 }
 
-.info{
-display: flex;
-align-items: center;
-justify-content: center;
-border-right: solid black 5px;
-border-left:solid black 5px;
-font-size: 70px;
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: solid black 5px;
+  border-left: solid black 5px;
+  font-size: 70px;
 }
-.infoP{
-position: absolute;
+.infoP {
+  position: absolute;
 }
 
 /*3 en raya ganes*/
-.fila1Gane{
-
-position: absolute;
-visibility: hidden;
-
+.fila1Gane {
+  position: absolute;
+  visibility: hidden;
 }
-.fila2Gane{
-
-position: absolute;
-visibility: hidden;
-
+.fila2Gane {
+  position: absolute;
+  visibility: hidden;
 }
-.fila3Gane{
-
-position: absolute;
-visibility: hidden;
-
+.fila3Gane {
+  position: absolute;
+  visibility: hidden;
 }
 
-.fila1GaneDiagonal{
-position: absolute;
-transform: rotate(135deg);
-visibility: hidden;
+.fila1GaneDiagonal {
+  position: absolute;
+  transform: rotate(135deg);
+  visibility: hidden;
 }
 
-.fila1GaneDiagonal2{
-position: absolute;
-transform: rotate(45deg);
-visibility: hidden;
+.fila1GaneDiagonal2 {
+  position: absolute;
+  transform: rotate(45deg);
+  visibility: hidden;
 }
-.columna1gane{
-position: absolute;
-visibility: hidden;
-transform: rotate(90deg);
+.columna1gane {
+  position: absolute;
+  visibility: hidden;
+  transform: rotate(90deg);
 }
-.columna2gane{
-position: absolute;
-visibility: hidden;
-transform: rotate(90deg);
+.columna2gane {
+  position: absolute;
+  visibility: hidden;
+  transform: rotate(90deg);
 }
 
-.columna3gane{
-position: absolute;
-visibility: hidden;
-transform: rotate(90deg);
+.columna3gane {
+  position: absolute;
+  visibility: hidden;
+  transform: rotate(90deg);
 }

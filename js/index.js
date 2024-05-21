@@ -20,8 +20,8 @@ let infoWin = document.getElementById("infoP");
 let btnRestart = document.getElementById("btnRestart");
 //restart informacion
 function restart() {
-  infoWin.innerHTML = "¿Restart?";
-  infoWin.addEventListener("click", () => {
+  document.getElementById('restartSvg').style.visibility = 'visible'
+  document.getElementById('restartSvg').addEventListener("click", () => {
     window.location.reload();
   });
 }
@@ -39,7 +39,6 @@ let cambiosJugador = "O";
 let estadoJuego = "jugando";
 //movimientos del bot
 let cajasHtml = [P0_0, P0_1, P0_2, P1_0, P1_1, P1_2, P2_0, P2_1, P2_2];
-//tic tac Matriz
 
 //funciones individuales
 function tocarP0_0() {
@@ -80,40 +79,7 @@ function tocarP0_0() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        if (fila1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1Gane").style.visibility = "visible";
-        }
-
-        if (fila2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila2Gane").style.visibility = "visible";
-        }
-
-        if (fila3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila3Gane").style.visibility = "visible";
-        }
-
-        if (diagonal2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal").style.visibility =
-            "visible";
-        }
-
-        if (diagonal(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal2").style.visibility =
-            "visible";
-        }
-
-        if (columna1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna1Gane").style.visibility = "visible";
-        }
-
-        if (columna2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna2Gane").style.visibility = "visible";
-        }
-
-        if (columna3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna3Gane").style.visibility = "visible";
-        }
-
+        tresEnRaya()
         //Luego mostrara el gane
       } else {
         if (empate(TicTacMatriz)) {
@@ -156,40 +122,7 @@ function tocarP0_1() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        if (fila1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1Gane").style.visibility = "visible";
-        }
-
-        if (fila2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila2Gane").style.visibility = "visible";
-        }
-
-        if (fila3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila3Gane").style.visibility = "visible";
-        }
-
-        if (diagonal2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal").style.visibility =
-            "visible";
-        }
-
-        if (diagonal(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal2").style.visibility =
-            "visible";
-        }
-
-        if (columna1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna1Gane").style.visibility = "visible";
-        }
-
-        if (columna2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna2Gane").style.visibility = "visible";
-        }
-
-        if (columna3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna3Gane").style.visibility = "visible";
-        }
-
+        tresEnRaya()
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -233,40 +166,7 @@ function tocarP0_2() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        if (fila1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1Gane").style.visibility = "visible";
-        }
-
-        if (fila2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila2Gane").style.visibility = "visible";
-        }
-
-        if (fila3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila3Gane").style.visibility = "visible";
-        }
-
-        if (diagonal2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal").style.visibility =
-            "visible";
-        }
-
-        if (diagonal(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal2").style.visibility =
-            "visible";
-        }
-
-        if (columna1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna1Gane").style.visibility = "visible";
-        }
-
-        if (columna2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna2Gane").style.visibility = "visible";
-        }
-
-        if (columna3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna3Gane").style.visibility = "visible";
-        }
-
+        tresEnRaya()
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -310,40 +210,7 @@ function tocarP1_0() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        if (fila1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1Gane").style.visibility = "visible";
-        }
-
-        if (fila2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila2Gane").style.visibility = "visible";
-        }
-
-        if (fila3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila3Gane").style.visibility = "visible";
-        }
-
-        if (diagonal2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal").style.visibility =
-            "visible";
-        }
-
-        if (diagonal(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal2").style.visibility =
-            "visible";
-        }
-
-        if (columna1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna1Gane").style.visibility = "visible";
-        }
-
-        if (columna2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna2Gane").style.visibility = "visible";
-        }
-
-        if (columna3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna3Gane").style.visibility = "visible";
-        }
-
+        tresEnRaya()
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -387,40 +254,7 @@ function tocarP1_1() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        if (fila1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1Gane").style.visibility = "visible";
-        }
-
-        if (fila2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila2Gane").style.visibility = "visible";
-        }
-
-        if (fila3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila3Gane").style.visibility = "visible";
-        }
-
-        if (diagonal2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal").style.visibility =
-            "visible";
-        }
-
-        if (diagonal(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal2").style.visibility =
-            "visible";
-        }
-
-        if (columna1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna1Gane").style.visibility = "visible";
-        }
-
-        if (columna2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna2Gane").style.visibility = "visible";
-        }
-
-        if (columna3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna3Gane").style.visibility = "visible";
-        }
-
+        tresEnRaya()
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -464,40 +298,7 @@ function tocarP1_2() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        if (fila1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1Gane").style.visibility = "visible";
-        }
-
-        if (fila2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila2Gane").style.visibility = "visible";
-        }
-
-        if (fila3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila3Gane").style.visibility = "visible";
-        }
-
-        if (diagonal2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal").style.visibility =
-            "visible";
-        }
-
-        if (diagonal(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal2").style.visibility =
-            "visible";
-        }
-
-        if (columna1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna1Gane").style.visibility = "visible";
-        }
-
-        if (columna2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna2Gane").style.visibility = "visible";
-        }
-
-        if (columna3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna3Gane").style.visibility = "visible";
-        }
-
+        tresEnRaya()
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -542,40 +343,7 @@ function tocarP2_0() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        if (fila1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1Gane").style.visibility = "visible";
-        }
-
-        if (fila2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila2Gane").style.visibility = "visible";
-        }
-
-        if (fila3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila3Gane").style.visibility = "visible";
-        }
-
-        if (diagonal2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal").style.visibility =
-            "visible";
-        }
-
-        if (diagonal(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal2").style.visibility =
-            "visible";
-        }
-
-        if (columna1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna1Gane").style.visibility = "visible";
-        }
-
-        if (columna2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna2Gane").style.visibility = "visible";
-        }
-
-        if (columna3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna3Gane").style.visibility = "visible";
-        }
-
+       tresEnRaya()
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -617,40 +385,7 @@ function tocarP2_1() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        if (fila1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1Gane").style.visibility = "visible";
-        }
-
-        if (fila2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila2Gane").style.visibility = "visible";
-        }
-
-        if (fila3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila3Gane").style.visibility = "visible";
-        }
-
-        if (diagonal2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal").style.visibility =
-            "visible";
-        }
-
-        if (diagonal(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal2").style.visibility =
-            "visible";
-        }
-
-        if (columna1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna1Gane").style.visibility = "visible";
-        }
-
-        if (columna2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna2Gane").style.visibility = "visible";
-        }
-
-        if (columna3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna3Gane").style.visibility = "visible";
-        }
-
+        tresEnRaya()
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -695,40 +430,7 @@ function tocarP2_2() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        if (fila1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1Gane").style.visibility = "visible";
-        }
-
-        if (fila2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila2Gane").style.visibility = "visible";
-        }
-
-        if (fila3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila3Gane").style.visibility = "visible";
-        }
-
-        if (diagonal2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal").style.visibility =
-            "visible";
-        }
-
-        if (diagonal(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal2").style.visibility =
-            "visible";
-        }
-
-        if (columna1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna1Gane").style.visibility = "visible";
-        }
-
-        if (columna2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna2Gane").style.visibility = "visible";
-        }
-
-        if (columna3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna3Gane").style.visibility = "visible";
-        }
-
+        tresEnRaya()
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -927,40 +629,7 @@ function bot(matriz, cambiosJugador, coordenadas) {
       estadoJuego = "ganador";
       infoWin.innerHTML = cambiosJugador + " es el ganador!";
       setTimeout(restart, 1000);
-      if (fila1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1Gane").style.visibility = "visible";
-        }
-
-        if (fila2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila2Gane").style.visibility = "visible";
-        }
-
-        if (fila3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila3Gane").style.visibility = "visible";
-        }
-
-        if (diagonal2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal").style.visibility =
-            "visible";
-        }
-
-        if (diagonal(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("fila1GaneDiagonal2").style.visibility =
-            "visible";
-        }
-
-        if (columna1(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna1Gane").style.visibility = "visible";
-        }
-
-        if (columna2(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna2Gane").style.visibility = "visible";
-        }
-
-        if (columna3(TicTacMatriz, cambiosJugador)) {
-          document.getElementById("columna2Gane").style.visibility = "visible";
-        }
-
+      tresEnRaya()
     } else {
       if (empate(TicTacMatriz)) {
         infoWin.innerHTML = "Hubo un empate";
@@ -1000,5 +669,40 @@ function soloAgarreCamposEnBlanco(matriz) {
 function estado() {
   if (estadoJuego == "Bot") {
     estadoJuego = "jugando";
+  }
+}
+
+//funcion tres en raya
+function tresEnRaya() {
+  if (fila1(TicTacMatriz, cambiosJugador)) {
+    document.getElementById("fila1Gane").style.visibility = "visible";
+  }
+
+  if (fila2(TicTacMatriz, cambiosJugador)) {
+    document.getElementById("fila2Gane").style.visibility = "visible";
+  }
+
+  if (fila3(TicTacMatriz, cambiosJugador)) {
+    document.getElementById("fila3Gane").style.visibility = "visible";
+  }
+
+  if (diagonal2(TicTacMatriz, cambiosJugador)) {
+    document.getElementById("fila1GaneDiagonal").style.visibility = "visible";
+  }
+
+  if (diagonal(TicTacMatriz, cambiosJugador)) {
+    document.getElementById("fila1GaneDiagonal2").style.visibility = "visible";
+  }
+
+  if (columna1(TicTacMatriz, cambiosJugador)) {
+    document.getElementById("columna1Gane").style.visibility = "visible";
+  }
+
+  if (columna2(TicTacMatriz, cambiosJugador)) {
+    document.getElementById("columna2Gane").style.visibility = "visible";
+  }
+
+  if (columna3(TicTacMatriz, cambiosJugador)) {
+    document.getElementById("columna3Gane").style.visibility = "visible";
   }
 }
