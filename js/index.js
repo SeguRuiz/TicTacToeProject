@@ -20,8 +20,8 @@ let infoWin = document.getElementById("infoP");
 let btnRestart = document.getElementById("btnRestart");
 //restart informacion
 function restart() {
-  document.getElementById('restartSvg').style.visibility = 'visible'
-  document.getElementById('restartSvg').addEventListener("click", () => {
+  document.getElementById("restartSvg").style.visibility = "visible";
+  document.getElementById("restartSvg").addEventListener("click", () => {
     window.location.reload();
   });
 }
@@ -39,6 +39,37 @@ let cambiosJugador = "O";
 let estadoJuego = "jugando";
 //movimientos del bot
 let cajasHtml = [P0_0, P0_1, P0_2, P1_0, P1_1, P1_2, P2_0, P2_1, P2_2];
+let arrayMatriz = ["", "", "", "", "", "", "", "", ""];
+
+// ganeFila1(arrayMatriz);
+// ganeFila2(arrayMatriz);
+// ganeFila3(arrayMatriz);
+// ganeColumna1(arrayMatriz);
+
+arrayMatriz[0] = 1;
+console.log(TicTacMatriz);
+for (let x = 0; x < cajasHtml.length; x++) {
+  let espacios = cajasHtml[x];
+  espacios.addEventListener("click", (o) => {
+    if (estadoJuego == "jugando") {
+      if (espacios.innerHTML == "") {
+        cambiosJugador = "X";
+        infoCambio(cambiosJugador);
+        espacios.innerHTML = cambiosJugador;
+        if (ganeFila1(cajasHtml, cambiosJugador)||
+            ganeFila2(cajasHtml, cambiosJugador)||
+            ganeFila3(cajasHtml, cambiosJugador)||
+            ganeColumna1(cajasHtml, cambiosJugador)||
+            ganeColumna2(cajasHtml, cambiosJugador)||
+            ganeColumna3(cajasHtml, cambiosJugador)
+             ) {
+          console.log(true)
+        }
+        
+      }
+    }
+  });
+}
 
 //funciones individuales
 function tocarP0_0() {
@@ -79,7 +110,7 @@ function tocarP0_0() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        tresEnRaya()
+        tresEnRaya(TicTacMatriz, cambiosJugador);
         //Luego mostrara el gane
       } else {
         if (empate(TicTacMatriz)) {
@@ -97,7 +128,6 @@ function tocarP0_0() {
           setTimeout(estado, 1000);
         }
       }
-      console.log(TicTacMatriz);
     }
   }
 }
@@ -122,7 +152,7 @@ function tocarP0_1() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        tresEnRaya()
+        tresEnRaya(TicTacMatriz, cambiosJugador);
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -140,8 +170,6 @@ function tocarP0_1() {
         }
       }
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-
-      console.log(TicTacMatriz);
     }
   }
 }
@@ -166,7 +194,7 @@ function tocarP0_2() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        tresEnRaya()
+        tresEnRaya(TicTacMatriz, cambiosJugador);
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -184,8 +212,6 @@ function tocarP0_2() {
         }
       }
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-
-      console.log(TicTacMatriz);
     }
   }
 }
@@ -210,7 +236,7 @@ function tocarP1_0() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        tresEnRaya()
+        tresEnRaya(TicTacMatriz, cambiosJugador);
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -228,8 +254,6 @@ function tocarP1_0() {
         }
       }
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-
-      console.log(TicTacMatriz);
     }
   }
 }
@@ -254,7 +278,7 @@ function tocarP1_1() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        tresEnRaya()
+        tresEnRaya(TicTacMatriz, cambiosJugador);
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -272,8 +296,6 @@ function tocarP1_1() {
         }
       }
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-
-      console.log(TicTacMatriz);
     }
   }
 }
@@ -298,7 +320,7 @@ function tocarP1_2() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        tresEnRaya()
+        tresEnRaya(TicTacMatriz, cambiosJugador);
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -317,8 +339,6 @@ function tocarP1_2() {
       }
 
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-
-      console.log(TicTacMatriz);
     }
   }
 }
@@ -343,7 +363,7 @@ function tocarP2_0() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-       tresEnRaya()
+        tresEnRaya(TicTacMatriz, cambiosJugador);
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -385,7 +405,7 @@ function tocarP2_1() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        tresEnRaya()
+        tresEnRaya(TicTacMatriz, cambiosJugador);
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -404,8 +424,6 @@ function tocarP2_1() {
       }
 
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-
-      console.log(TicTacMatriz);
     }
   }
 }
@@ -430,7 +448,7 @@ function tocarP2_2() {
         estadoJuego = "ganador";
         infoWin.innerHTML = cambiosJugador + " es el ganador!";
         setTimeout(restart, 1000);
-        tresEnRaya()
+        tresEnRaya(TicTacMatriz, cambiosJugador);
       } else {
         if (empate(TicTacMatriz)) {
           infoWin.innerHTML = "Hubo un empate";
@@ -449,8 +467,6 @@ function tocarP2_2() {
       }
 
       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-
-      console.log(TicTacMatriz);
     }
   }
 }
@@ -600,12 +616,11 @@ function empate(matriz) {
 function bot(matriz, cambiosJugador, coordenadas) {
   estadoJuego = "Bot";
   cambiosJugador = "O";
-  console.log(cambiosJugador);
+
   if (estadoJuego == "Bot") {
     infoCambio(cambiosJugador);
     matriz[coordenadas[0]][coordenadas[1]] = cambiosJugador;
 
-    console.log(matriz);
     P0_0.innerHTML = matriz[0][0];
     P0_1.innerHTML = matriz[0][1];
     P0_2.innerHTML = matriz[0][2];
@@ -628,8 +643,8 @@ function bot(matriz, cambiosJugador, coordenadas) {
     ) {
       estadoJuego = "ganador";
       infoWin.innerHTML = cambiosJugador + " es el ganador!";
+      tresEnRaya(matriz, cambiosJugador);
       setTimeout(restart, 1000);
-      tresEnRaya()
     } else {
       if (empate(TicTacMatriz)) {
         infoWin.innerHTML = "Hubo un empate";
@@ -646,6 +661,26 @@ function soloAgarreCamposEnBlanco(matriz) {
     let columna = Math.floor(Math.random() * 3);
     let vacio = matriz[fila][columna];
 
+    if (vacio == "") {
+      bloqueos(matriz);
+      return Array.from(fila + "" + columna);
+    }
+  }
+}
+
+function soloAgarreCamposEnBlancoAvanzado(matriz) {
+  let loop = 0;
+  while (loop == 0) {
+    let fila = Math.floor(Math.random() * 3);
+    let columna = Math.floor(Math.random() * 3);
+    let vacio = matriz[fila][columna];
+
+    // if (matriz[0][0] == 'X' && matriz [0][2]== 'X' &&  matriz[0][1] == '') {
+    // let bloqueo1 = [0, 1]
+    // return bloqueo1
+    // } else {
+
+    // }
     if (vacio == "") {
       return Array.from(fila + "" + columna);
     }
@@ -673,36 +708,166 @@ function estado() {
 }
 
 //funcion tres en raya
-function tresEnRaya() {
-  if (fila1(TicTacMatriz, cambiosJugador)) {
+function tresEnRaya(matriz, cambiosJugador) {
+  if (fila1(matriz, cambiosJugador)) {
     document.getElementById("fila1Gane").style.visibility = "visible";
   }
 
-  if (fila2(TicTacMatriz, cambiosJugador)) {
+  if (fila2(matriz, cambiosJugador)) {
     document.getElementById("fila2Gane").style.visibility = "visible";
   }
 
-  if (fila3(TicTacMatriz, cambiosJugador)) {
+  if (fila3(matriz, cambiosJugador)) {
     document.getElementById("fila3Gane").style.visibility = "visible";
   }
 
-  if (diagonal2(TicTacMatriz, cambiosJugador)) {
+  if (diagonal2(matriz, cambiosJugador)) {
     document.getElementById("fila1GaneDiagonal").style.visibility = "visible";
   }
 
-  if (diagonal(TicTacMatriz, cambiosJugador)) {
+  if (diagonal(matriz, cambiosJugador)) {
     document.getElementById("fila1GaneDiagonal2").style.visibility = "visible";
   }
 
-  if (columna1(TicTacMatriz, cambiosJugador)) {
+  if (columna1(matriz, cambiosJugador)) {
     document.getElementById("columna1Gane").style.visibility = "visible";
   }
 
-  if (columna2(TicTacMatriz, cambiosJugador)) {
+  if (columna2(matriz, cambiosJugador)) {
     document.getElementById("columna2Gane").style.visibility = "visible";
   }
 
-  if (columna3(TicTacMatriz, cambiosJugador)) {
+  if (columna3(matriz, cambiosJugador)) {
     document.getElementById("columna3Gane").style.visibility = "visible";
+  }
+}
+
+//comprobaciones de bloqueo
+function bloqueos(matriz) {
+  let fila1Validacion = 0;
+}
+//MinMax pruebas
+// let matrizPequeña = [
+// ['o', 'o', 'x'],
+// ['x', 'o', 'o'],
+// ['x', 'x', 'x']
+// ]
+// for (let o = 0; o < matrizPequeña.length; o++) {
+//   let fila = matrizPequeña[o];
+//   for (let i = 0; i < fila.length; i++) {
+//     let columna = fila[i];
+//     console.log(columna);
+//   }
+// }
+
+//For de array sola
+function ganeFila1(array, cambiosJugador) {
+  let contador = 0;
+  for (let x = 0; x <= 2; x++) {
+    const ganeFila1 = array[x].innerHTML;
+
+    if (ganeFila1 == cambiosJugador) {
+      contador++;
+    }
+  }
+  if (contador == 3) {
+    return true;
+  } else {
+    return false;
+  }
+}
+function ganeFila2(array, cambiosJugador) {
+  let contador = 0;
+  for (let x = 3; x <= 6; x++) {
+    const ganeFila1 = array[x].innerHTML;
+
+    if (ganeFila1 == cambiosJugador) {
+      contador++;
+    }
+  }
+  if (contador == 3) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function ganeFila3(array, cambiosJugador) {
+  let contador = 0;
+  for (let x = 6; x <= 8; x++) {
+    const ganeFila1 = array[x].innerHTML;
+
+    if (ganeFila1 == cambiosJugador) {
+      contador++;
+    }
+  }
+  if (contador == 3) {
+  return true
+  } else {
+    return false;
+  }
+}
+
+function ganeColumna1(array, cambiosJugador) {
+  if (
+    array[0].innerHTML == cambiosJugador &&
+    array[3].innerHTML == cambiosJugador &&
+    array[6].innerHTML == cambiosJugador
+  ) {
+    
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function ganeColumna2(array, cambiosJugador) {
+  if (
+    array[1].innerHTML == cambiosJugador &&
+    array[4].innerHTML == cambiosJugador &&
+    array[7].innerHTML == cambiosJugador
+  ) {
+    
+    return true;
+  } else {
+    return false;
+  }
+}
+function ganeColumna3(array, cambiosJugador) {
+  if (
+    array[2].innerHTML == cambiosJugador &&
+    array[5].innerHTML == cambiosJugador &&
+    array[8].innerHTML == cambiosJugador
+  ) {
+    
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function ganeDiag(array) {
+  if (
+    array[0].innerHTML == cambiosJugador &&
+    array[4].innerHTML == cambiosJugador &&
+    array[8].innerHTML == cambiosJugador
+  ) {
+    
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function ganeDiag2(array) {
+  if (
+    array[2].innerHTML == cambiosJugador &&
+    array[4].innerHTML == cambiosJugador &&
+    array[6].innerHTML == cambiosJugador
+  ) {
+   
+    return true;
+  } else {
+    return false;
   }
 }
