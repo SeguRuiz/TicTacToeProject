@@ -667,10 +667,83 @@ function bot(array, cambiosJugador, coordenadas) {
     }
   }
 }
+//Columa1  bloqueo
+function blockColumn1(array) {
+  let contador = 0;
+  if (array[0].innerHTML == "X") {
+    contador++;
+  }
+  if (array[3].innerHTML == "X") {
+    contador++;
+  }
+  if (array[6].innerHTML == "X") {
+    contador++;
+  }
 
+  if (contador == 2) {
+    if (array[6].innerHTML == "") {
+      return 6;
+    } else if (array[3].innerHTML == "") {
+      return 3;
+    } else if (array[0].innerHTML == "") {
+      return 0;
+    }
+  } else {
+    return null;
+  }
+}
+//Columna2 bloqueo
+function blockColumn2(array) {
+  let contador = 0;
+  if (array[1].innerHTML == "X") {
+    contador++;
+  }
+  if (array[4].innerHTML == "X") {
+    contador++;
+  }
+  if (array[7].innerHTML == "X") {
+    contador++;
+  }
+  if (contador == 2) {
+    if (array[1].innerHTML == "") {
+      return 1;
+    } else if (array[4].innerHTML == "") {
+      return 4;
+    } else if (array[7].innerHTML == "") {
+      return 7;
+    }
+  } else {
+    return null;
+  }
+}
+//Tercera columna bloqueo
+function blockColumn3(array) {
+  let contador = 0;
+  if (array[2].innerHTML == "X") {
+    contador++;
+  }
+  if (array[5].innerHTML == "X") {
+    contador++;
+  }
+  if (array[8].innerHTML == "X") {
+    contador++;
+  }
+  if (contador == 2) {
+    if (array[2].innerHTML == "") {
+      return 2;
+    } else if (array[5].innerHTML == "") {
+      return 5;
+    } else if (array[8].innerHTML == "") {
+      return 8;
+    }
+  } else {
+    return null;
+  }
+}
+//Primera fila bloqueo
 function blocks1(array) {
   let contadorfila1 = 0;
-  //Primera fila bloqueo
+
   for (let o = 0; o <= 2; o++) {
     let blockThiSpot = array[o].innerHTML;
 
@@ -689,6 +762,7 @@ function blocks1(array) {
     return null;
   }
 }
+//Segunda fila bloqueo
 function blocks2(array) {
   let contadorfila2 = 0;
   for (let x = 3; x <= 5; x++) {
@@ -710,6 +784,7 @@ function blocks2(array) {
   }
 }
 
+//Tercera fila bloqueo
 function blocks3(array) {
   let contadorfila3 = 0;
   for (let i = 6; i <= 8; i++) {
@@ -732,21 +807,35 @@ function blocks3(array) {
 }
 function soloAgarreCamposEnBlanco(array) {
   let bloqueo = false;
+  let oportunidadGane = false;
 
-  if (blocks1(array) != null) {
-    bloqueo = true;
-    return blocks1(array);
+  if ((oportunidadGane == false)) {
+    if (blockColumn3(array) != null) {
+      bloqueo = true;
+      return blockColumn3(array);
+    }
+    if (blockColumn2(array) != null) {
+      bloqueo = true;
+      return blockColumn2(array);
+    }
+    if (blockColumn1(array) != null) {
+      bloqueo = true;
+      return blockColumn1(array);
+    }
+    if (blocks1(array) != null) {
+      bloqueo = true;
+      return blocks1(array);
+    }
+    if (blocks2(array) != null) {
+      bloqueo = true;
+      return blocks2(array);
+    }
+    if (blocks3(array) != null) {
+      bloqueo = true;
+      return blocks3(array);
+    }
   }
-  if (blocks2(array) != null) {
-    bloqueo = true;
-    return blocks2(array);
-  }
-  if (blocks3(array) != null) {
-    bloqueo = true;
-    return blocks3(array);
-  }
-
-  if (bloqueo == false) {
+  if (bloqueo == false && oportunidadGane == false) {
     let loop = 0;
     while (loop == 0) {
       let fila = Math.floor(Math.random() * 9);
