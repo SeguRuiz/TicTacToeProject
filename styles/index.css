@@ -288,6 +288,7 @@ body {
 
 .columna3gane {
   position: absolute;
-  visibility: hidden;
+  visibility: hidden
+  ;
   transform: rotate(90deg);
 }

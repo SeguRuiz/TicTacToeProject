@@ -83,7 +83,7 @@ for (let x = 0; x < cajasHtml.length; x++) {
               1000,
               cajasHtml,
               cambiosJugador,
-              pos(cajasHtml, cambiosJugador)
+              soloAgarreCamposEnBlanco(cajasHtml)
             );
             setTimeout(estado, 1000);
           }
@@ -642,21 +642,20 @@ function bot(array, cambiosJugador, coordenadas) {
   if (estadoJuego == "Bot") {
     infoCambio(cambiosJugador);
     array[coordenadas].innerHTML = cambiosJugador;
-    
 
     if (
-      ganeFila1(cajasHtml, cambiosJugador) ||
-      ganeFila2(cajasHtml, cambiosJugador) ||
-      ganeFila3(cajasHtml, cambiosJugador) ||
-      ganeColumna1(cajasHtml, cambiosJugador) ||
-      ganeColumna2(cajasHtml, cambiosJugador) ||
-      ganeColumna3(cajasHtml, cambiosJugador) ||
-      ganeDiag(cajasHtml, cambiosJugador) ||
-      ganeDiag2(cajasHtml, cambiosJugador)
+      ganeFila1(cajasHtml, cambiosJugador).gano ||
+      ganeFila2(cajasHtml, cambiosJugador).gano ||
+      ganeFila3(cajasHtml, cambiosJugador).gano ||
+      ganeColumna1(cajasHtml, cambiosJugador).gano ||
+      ganeColumna2(cajasHtml, cambiosJugador).gano ||
+      ganeColumna3(cajasHtml, cambiosJugador).gano ||
+      ganeDiag(cajasHtml, cambiosJugador).gano ||
+      ganeDiag2(cajasHtml, cambiosJugador).gano
     ) {
       estadoJuego = "ganador";
       infoWin.innerHTML = cambiosJugador + " es el ganador!";
-      console.log(pos(cajasHtml, cambiosJugador));
+      tresEnRaya(array, cambiosJugador);
 
       setTimeout(restart, 1000);
       tresEnRaya(array, cambiosJugador);
@@ -669,63 +668,216 @@ function bot(array, cambiosJugador, coordenadas) {
   }
 }
 
+function blocks1(array) {
+  let contadorfila1 = 0;
+  //Primera fila bloqueo
+  for (let o = 0; o <= 2; o++) {
+    let blockThiSpot = array[o].innerHTML;
+
+    if (blockThiSpot == "X") {
+      contadorfila1++;
+    }
+  }
+  if (contadorfila1 == 2) {
+    for (let o = 0; o <= 2; o++) {
+      let blockThiSpot = array[o].innerHTML;
+      if (blockThiSpot == "") {
+        return o;
+      }
+    }
+  } else {
+    return null;
+  }
+}
+function blocks2(array) {
+  let contadorfila2 = 0;
+  for (let x = 3; x <= 5; x++) {
+    let blockThiSpot2 = array[x].innerHTML;
+
+    if (blockThiSpot2 == "X") {
+      contadorfila2++;
+    }
+  }
+  if (contadorfila2 == 2) {
+    for (let x = 3; x <= 5; x++) {
+      let blockThiSpot2 = array[x].innerHTML;
+      if (blockThiSpot2 == "") {
+        return x;
+      }
+    }
+  } else {
+    return null;
+  }
+}
+
+function blocks3(array) {
+  let contadorfila3 = 0;
+  for (let i = 6; i <= 8; i++) {
+    let blockThiSpot3 = array[i].innerHTML;
+
+    if (blockThiSpot3 == "X") {
+      contadorfila3++;
+    }
+  }
+  if (contadorfila3 == 2) {
+    for (let i = 6; i <= 8; i++) {
+      let blockThiSpot3 = array[i].innerHTML;
+      if (blockThiSpot3 == "") {
+        return i;
+      }
+    }
+  } else {
+    return null;
+  }
+}
 function soloAgarreCamposEnBlanco(array) {
-  let loop = 0;
-  while (loop == 0) {
-    let fila = Math.floor(Math.random() * 9);
-    let vacio = array[fila].innerHTML;
-    if (vacio == "") {
-      return fila;
+  let bloqueo = false;
+
+  if (blocks1(array) != null) {
+    bloqueo = true;
+    return blocks1(array);
+  }
+  if (blocks2(array) != null) {
+    bloqueo = true;
+    return blocks2(array);
+  }
+  if (blocks3(array) != null) {
+    bloqueo = true;
+    return blocks3(array);
+  }
+
+  if (bloqueo == false) {
+    let loop = 0;
+    while (loop == 0) {
+      let fila = Math.floor(Math.random() * 9);
+      let vacio = array[fila].innerHTML;
+      if (vacio == "") {
+        return fila;
+      }
     }
   }
 }
+
+//Valores de gane
+function GanesValor(cajasHtml, cambiosJugador) {
+  let valor;
+  let ganes = [
+    ganeFila1(cajasHtml, cambiosJugador),
+    ganeFila2(cajasHtml, cambiosJugador),
+    ganeFila3(cajasHtml, cambiosJugador),
+    ganeColumna1(cajasHtml, cambiosJugador),
+    ganeColumna2(cajasHtml, cambiosJugador),
+    ganeColumna3(cajasHtml, cambiosJugador),
+    ganeDiag(cajasHtml, cambiosJugador),
+    ganeDiag2(cajasHtml, cambiosJugador),
+  ];
+
+  let quienGano;
+  for (let o = 0; o < ganes.length; o++) {
+    let gano = ganes[o].gano;
+    if (gano == true) {
+      quienGano = ganes[o].quien;
+    }
+  }
+  if (quienGano == "X") {
+    valor = 1;
+    return valor;
+  } else if (quienGano == "O") {
+    valor = -1;
+    return valor;
+  }
+  let empate = empateArray(cajasHtml, cambiosJugador);
+  if (empate == true) {
+    valor = 0;
+    return valor;
+  }
+}
+
 //////////FUNCION RAMIFICACION/////////////
-function pos(array, jugador) {
-  // let jugadaActual = [];
-  // //Lee la jugada actual del tablero y lo pushea a jugadaActual
-  // for (let x = 0; x < array.length; x++) {
-  //   let reader = array[x].innerHTML;
+// function pos(array, jugador) {
+//   // let jugadaActual = [];
+//   // //Lee la jugada actual del tablero y lo pushea a jugadaActual
+//   // for (let x = 0; x < array.length; x++) {
+//   //   let reader = array[x].innerHTML;
 
-  //   jugadaActual.push(reader);
-  // }
-  // console.log(jugadaActual);
-  // //Revisa cuantos espacios en blanco hay
-  // let blanco = 0;
-  // for (let i = 0; i < jugadaActual.length; i++) {
-  //   let reader2 = jugadaActual[i];
+//   //   jugadaActual.push(reader);
+//   // }
+//   // console.log(jugadaActual);
+//   // //Revisa cuantos espacios en blanco hay
+//   // let blanco = 0;
+//   // for (let i = 0; i < jugadaActual.length; i++) {
+//   //   let reader2 = jugadaActual[i];
 
-  //   if (reader2 == "") {
-  //     blanco++;
-  //   }
-  // }
-  // // Lee jugada actual y se fija cuales espacios estan en blanco (Posiciones)
-  let mejorPuntaje = -Infinity
-  //Es mejor conaiderar la peor situacion de puntaje (que seria -infinito)
-  let mejorCordenada;
-  //La mejor cordenada sera escpjida dependiendo del puntaje del min o max 
-  for (let c = 0; c <= 8; c++) {
-   let vacio2 = array[c].innerHTML
-    if (vacio2 == "") {
-      //array[c].innerHTML = jugador
-     
-     puntaje = miniMaxPrueba(array)
-     //El puntaje sera puesto por minimax si dicho puntaje llega ser maximo entoces agarralo
-     if (puntaje > mejorPuntaje) {
-     //La coordenada solo se mandara si el puntaje otorgado por minimax llega a ser mayor al mejor puntaje
-      mejorPuntaje = puntaje
-      mejorCordenada = c
-     }
-      //Necesito agarrar esos casos y ponerlos en lista!!!
-    }
-  }
-  console.log(mejorPuntaje)
-  return mejorCordenada
-}
+//   //   if (reader2 == "") {
+//   //     blanco++;
+//   //   }
+//   // }
+//   // // Lee jugada actual y se fija cuales espacios estan en blanco (Posiciones)
+//   let mejorPuntaje = -Infinity;
+//   //Es mejor conaiderar la peor situacion de puntaje (que seria -infinito)
+//   let mejorCordenada;
+//   //La mejor cordenada sera escpjida dependiendo del puntaje del min o max
+//   for (let c = 0; c <= 8; c++) {
 
-function miniMaxPrueba(array){
-return 2
+//     if (array[c].innerHTML == "") {
+//       //array[c].innerHTML = jugador
+//       array[c].innerHTML = "O";
+//       let puntaje = miniMaxPrueba(array, 0, true, jugador);
+//       array[c].innerHTML = "";
+//       //El puntaje sera puesto por minimax si dicho puntaje llega ser maximo entoces agarralo
+//       if (puntaje > mejorPuntaje) {
+//         //La coordenada solo se mandara si el puntaje otorgado por minimax llega a ser mayor al mejor puntaje
+//         mejorPuntaje = puntaje;
+//         mejorCordenada = c;
+//       }
+//       //Necesito agarrar esos casos y ponerlos en lista!!!
+//     }
+//   }
+//   console.log(mejorCordenada);
+// }
 
-}
+// function miniMaxPrueba(array, numeroRamas, max, jugador) {
+//   if (GanesValor(array, jugador) != "") {
+//     return GanesValor(cajasHtml, cambiosJugador);
+//   }
+
+//   if (max) {
+//     let mejorPuntaje = -Infinity;
+//     for (let c = 0; c <= 8; c++) {
+//       let vacio3 = array[c].innerHTML;
+//       if (vacio3 == "") {
+//         //array[c].innerHTML = jugador
+//         array[c].innerHTML = "O";
+//         let puntaje = miniMaxPrueba(array, numeroRamas + 1, true);
+//         console.log(vacio3);
+//         array[c].innerHTML = "";
+//         //El puntaje sera puesto por minimax si dicho puntaje llega ser maximo entoces agarralo
+//         if (puntaje > mejorPuntaje) {
+//           //La coordenada solo se mandara si el puntaje otorgado por minimax llega a ser mayor al mejor puntaje
+//           mejorPuntaje = puntaje;
+//         }
+//       }
+//     }
+//     return mejorPuntaje;
+//   } else {
+//     let mejorPuntaje = Infinity;
+//     for (let c = 0; c <= 8; c++) {
+//       let vacio3 = array[c].innerHTML;
+//       if (vacio3 == "") {
+
+//         array[c].innerHTML = "X";
+//         let puntaje = miniMaxPrueba(array, numeroRamas + 1, false);
+//         array[c].innerHTML = "";
+//         //El puntaje sera puesto por minimax si dicho puntaje llega ser maximo entoces agarralo
+//         if (puntaje < mejorPuntaje) {
+//           //La coordenada solo se mandara si el puntaje otorgado por minimax llega a ser mayor al mejor puntaje
+//           mejorPuntaje = puntaje;
+//         }
+//       }
+//     }
+//     return mejorPuntaje;
+//   }
+// }
 //////////FUNCION RAMIFICACION/////////////
 // function soloAgarreCamposEnBlancoAvanzado(matriz) {
 //   let loop = 0;
@@ -833,9 +985,9 @@ function ganeFila1(array, cambiosJugador) {
     }
   }
   if (contador == 3) {
-    return {gano:true, quien:cambiosJugador}
+    return { gano: true, quien: cambiosJugador };
   } else {
-    return false
+    return false;
   }
 }
 function ganeFila2(array, cambiosJugador) {
@@ -848,7 +1000,7 @@ function ganeFila2(array, cambiosJugador) {
     }
   }
   if (contador == 3) {
-    return {gano:true, quien:cambiosJugador}
+    return { gano: true, quien: cambiosJugador };
   } else {
     return false;
   }
@@ -864,7 +1016,7 @@ function ganeFila3(array, cambiosJugador) {
     }
   }
   if (contador == 3) {
-    return {gano:true, quien:cambiosJugador}
+    return { gano: true, quien: cambiosJugador };
   } else {
     return false;
   }
@@ -876,7 +1028,7 @@ function ganeColumna1(array, cambiosJugador) {
     array[3].innerHTML == cambiosJugador &&
     array[6].innerHTML == cambiosJugador
   ) {
-    return {gano:true, quien:cambiosJugador}
+    return { gano: true, quien: cambiosJugador };
   } else {
     return false;
   }
@@ -888,7 +1040,7 @@ function ganeColumna2(array, cambiosJugador) {
     array[4].innerHTML == cambiosJugador &&
     array[7].innerHTML == cambiosJugador
   ) {
-    return {gano:true, quien:cambiosJugador}
+    return { gano: true, quien: cambiosJugador };
   } else {
     return false;
   }
@@ -899,7 +1051,7 @@ function ganeColumna3(array, cambiosJugador) {
     array[5].innerHTML == cambiosJugador &&
     array[8].innerHTML == cambiosJugador
   ) {
-    return {gano:true, quien:cambiosJugador}
+    return { gano: true, quien: cambiosJugador };
   } else {
     return false;
   }
@@ -911,8 +1063,7 @@ function ganeDiag(array, cambiosJugador) {
     array[4].innerHTML == cambiosJugador &&
     array[8].innerHTML == cambiosJugador
   ) {
-    
-    return {gano:true, quien:cambiosJugador}
+    return { gano: true, quien: cambiosJugador };
   } else {
     return false;
   }
@@ -924,7 +1075,7 @@ function ganeDiag2(array, cambiosJugador) {
     array[4].innerHTML == cambiosJugador &&
     array[6].innerHTML == cambiosJugador
   ) {
-    return {gano:true, quien:cambiosJugador}
+    return { gano: true, quien: cambiosJugador };
   } else {
     return false;
   }
@@ -941,7 +1092,7 @@ function empateArray(array) {
     }
   }
   if (contador == 9) {
-    return true
+    return true;
   } else {
     return false;
   }
