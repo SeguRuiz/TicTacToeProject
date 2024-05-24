@@ -667,6 +667,331 @@ function bot(array, cambiosJugador, coordenadas) {
     }
   }
 }
+//Bloqueo de jugadas pinza
+function blockCentro(array) {
+  let contador = 0;
+  if (array[4].innerHTML == "") {
+    contador++;
+  }
+
+  if (contador == 1) {
+    if (array[4].innerHTML == "") {
+      return 4;
+    }
+  } else {
+    return null;
+  }
+}
+function blockEstrategia(array) {
+  let contador = 0;
+  if (array[0].innerHTML == "X") {
+    contador++;
+  }
+  if (array[2].innerHTML == "X") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[1].innerHTML == "") {
+      return 1;
+    }
+  } else {
+    return null;
+  }
+}
+function blockEstrategia3(array) {
+  let contador = 0;
+  if (array[6].innerHTML == "X") {
+    contador++;
+  }
+  if (array[8].innerHTML == "X") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[7].innerHTML == "") {
+      return 7;
+    }
+  } else {
+    return null;
+  }
+}
+function blockEstrategia4(array) {
+  let contador = 0;
+  if (array[8].innerHTML == "X") {
+    contador++;
+  }
+  if (array[2].innerHTML == "X") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[5].innerHTML == "") {
+      return 5;
+    }
+  } else {
+    return null;
+  }
+}
+function blockEstrategia2(array) {
+  let contador = 0;
+  if (array[0].innerHTML == "X") {
+    contador++;
+  }
+  if (array[6].innerHTML == "X") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[3].innerHTML == "") {
+      return 3;
+    }
+  } else {
+    return null;
+  }
+}
+//oportunidadGane1
+function gane1(array) {
+  let contadorfila1 = 0;
+
+  for (let o = 0; o <= 2; o++) {
+    let blockThiSpot = array[o].innerHTML;
+
+    if (blockThiSpot == "O") {
+      contadorfila1++;
+    }
+  }
+  if (contadorfila1 == 2) {
+    for (let o = 0; o <= 2; o++) {
+      let blockThiSpot = array[o].innerHTML;
+      if (blockThiSpot == "") {
+        return o;
+      }
+    }
+  } else {
+    return null;
+  }
+}
+//oportunidadGane2
+function gane2(array) {
+  let contadorfila2 = 0;
+
+  for (let o = 3; o <= 5; o++) {
+    let blockThiSpot = array[o].innerHTML;
+
+    if (blockThiSpot == "O") {
+      contadorfila2++;
+    }
+  }
+  if (contadorfila2 == 2) {
+    for (let o = 3; o <= 5; o++) {
+      let blockThiSpot = array[o].innerHTML;
+      if (blockThiSpot == "") {
+        return o;
+      }
+    }
+  } else {
+    return null;
+  }
+}
+//oportunidadGane3
+function gane3(array) {
+  let contadorfila3 = 0;
+
+  for (let o = 6; o <= 8; o++) {
+    let blockThiSpot = array[o].innerHTML;
+
+    if (blockThiSpot == "O") {
+      contadorfila3++;
+    }
+  }
+  if (contadorfila3 == 2) {
+    for (let o = 6; o <= 8; o++) {
+      let blockThiSpot = array[o].innerHTML;
+      if (blockThiSpot == "") {
+        return o;
+      }
+    }
+  } else {
+    return null;
+  }
+}
+//OportunidadGane3
+function ganeColumn1(array) {
+  let contador = 0;
+  if (array[0].innerHTML == "O") {
+    contador++;
+  }
+  if (array[3].innerHTML == "O") {
+    contador++;
+  }
+  if (array[6].innerHTML == "O") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[6].innerHTML == "") {
+      return 6;
+    } else if (array[3].innerHTML == "") {
+      return 3;
+    } else if (array[0].innerHTML == "") {
+      return 0;
+    }
+  } else {
+    return null;
+  }
+}
+//OportunidadGane4
+function ganeColumn2(array) {
+  let contador = 0;
+  if (array[1].innerHTML == "O") {
+    contador++;
+  }
+  if (array[4].innerHTML == "O") {
+    contador++;
+  }
+  if (array[7].innerHTML == "O") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[1].innerHTML == "") {
+      return 1;
+    } else if (array[4].innerHTML == "") {
+      return 4;
+    } else if (array[7].innerHTML == "") {
+      return 7;
+    }
+  } else {
+    return null;
+  }
+}
+//OportunidadGane5
+function ganeColumn3(array) {
+  let contador = 0;
+  if (array[2].innerHTML == "O") {
+    contador++;
+  }
+  if (array[5].innerHTML == "O") {
+    contador++;
+  }
+  if (array[8].innerHTML == "O") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[2].innerHTML == "") {
+      return 2;
+    } else if (array[5].innerHTML == "") {
+      return 5;
+    } else if (array[8].innerHTML == "") {
+      return 8;
+    }
+  } else {
+    return null;
+  }
+}
+//OportunidadGane6
+function diagGane(array) {
+  let contador = 0;
+  if (array[0].innerHTML == "O") {
+    contador++;
+  }
+  if (array[4].innerHTML == "O") {
+    contador++;
+  }
+  if (array[8].innerHTML == "O") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[0].innerHTML == "") {
+      return 0;
+    } else if (array[4].innerHTML == "") {
+      return 4;
+    } else if (array[8].innerHTML == "") {
+      return 8;
+    }
+  } else {
+    return null;
+  }
+}
+//OportunidadGane7
+function diagGane2(array) {
+  let contador = 0;
+  if (array[2].innerHTML == "O") {
+    contador++;
+  }
+  if (array[4].innerHTML == "O") {
+    contador++;
+  }
+  if (array[6].innerHTML == "O") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[2].innerHTML == "") {
+      return 2;
+    } else if (array[4].innerHTML == "") {
+      return 4;
+    } else if (array[6].innerHTML == "") {
+      return 6;
+    }
+  } else {
+    return null;
+  }
+}
+//DiagonalBloqueo
+function blockDiagonal(array) {
+  let contador = 0;
+  if (array[2].innerHTML == "X") {
+    contador++;
+  }
+  if (array[4].innerHTML == "X") {
+    contador++;
+  }
+  if (array[6].innerHTML == "X") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[2].innerHTML == "") {
+      return 2;
+    } else if (array[4].innerHTML == "") {
+      return 4;
+    } else if (array[6].innerHTML == "") {
+      return 6;
+    }
+  } else {
+    return null;
+  }
+}
+//Diagonal2Bloqueo
+function blockDiagonal2(array) {
+  let contador = 0;
+  if (array[0].innerHTML == "X") {
+    contador++;
+  }
+  if (array[4].innerHTML == "X") {
+    contador++;
+  }
+  if (array[8].innerHTML == "X") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[0].innerHTML == "") {
+      return 0;
+    } else if (array[4].innerHTML == "") {
+      return 4;
+    } else if (array[8].innerHTML == "") {
+      return 8;
+    }
+  } else {
+    return null;
+  }
+}
+
 //Columa1  bloqueo
 function blockColumn1(array) {
   let contador = 0;
@@ -808,8 +1133,78 @@ function blocks3(array) {
 function soloAgarreCamposEnBlanco(array) {
   let bloqueo = false;
   let oportunidadGane = false;
+  let estrategia = false;
 
-  if ((oportunidadGane == false)) {
+  if (diagGane(array) != null) {
+    oportunidadGane = true;
+    return diagGane(array);
+  }
+  if (diagGane2(array) != null) {
+    oportunidadGane = true;
+    return diagGane2(array);
+  }
+  if (ganeColumn1(array) != null) {
+    oportunidadGane = true;
+    return ganeColumn1(array);
+  }
+  if (ganeColumn2(array) != null) {
+    oportunidadGane = true;
+    return ganeColumn2(array);
+  }
+  if (ganeColumn3(array) != null) {
+    oportunidadGane = true;
+    return ganeColumn3(array);
+  }
+  if (gane1(array) != null) {
+    oportunidadGane = true;
+    return gane1(array);
+  }
+  if (gane2(array) != null) {
+    oportunidadGane = true;
+    return gane2(array);
+  }
+  if (gane3(array) != null) {
+    oportunidadGane = true;
+    return gane3(array);
+  }
+
+  if (oportunidadGane == false) {
+    if (blockCentro(array) != null) {
+      estrategia = true;
+      console.log(estrategia);
+      return blockCentro(array);
+    }
+    if (blockEstrategia4(array) != null) {
+      estrategia = true;
+      console.log(estrategia);
+      return blockEstrategia4(array);
+    }
+    if (blockEstrategia3(array) != null) {
+      estrategia = true;
+      console.log(estrategia);
+      return blockEstrategia3(array);
+    }
+    if (blockEstrategia2(array) != null) {
+      estrategia = true;
+      console.log(estrategia);
+      return blockEstrategia2(array);
+    }
+    if (blockEstrategia(array) != null) {
+      estrategia = true;
+      console.log(estrategia);
+      return blockEstrategia(array);
+    }
+  }
+
+  if (estrategia == false && oportunidadGane == false) {
+    if (blockDiagonal2(array) != null) {
+      bloqueo = true;
+      return blockDiagonal2(array);
+    }
+    if (blockDiagonal(array) != null) {
+      bloqueo = true;
+      return blockDiagonal(array);
+    }
     if (blockColumn3(array) != null) {
       bloqueo = true;
       return blockColumn3(array);
