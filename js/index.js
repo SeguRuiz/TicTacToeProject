@@ -33,29 +33,30 @@ let TicTacMatriz = [
   ["", "", ""],
 ];
 
-let hola = 0;
-let hola2 = 0;
+//el jugador 
 let cambiosJugador = "O";
+//Para cambiar el estado de juego y evitar errores
 let estadoJuego = "jugando";
 //movimientos del bot
+//array de las cajas html para ponerle funcion a todas
 let cajasHtml = [P0_0, P0_1, P0_2, P1_0, P1_1, P1_2, P2_0, P2_1, P2_2];
 let arrayMatriz = ["", "", "", "", "", "", "", "", ""];
 
-// ganeFila1(arrayMatriz);
-// ganeFila2(arrayMatriz);
-// ganeFila3(arrayMatriz);
-// ganeColumna1(arrayMatriz);
 
-console.log(TicTacMatriz);
+
+
 for (let x = 0; x < cajasHtml.length; x++) {
+  //Me recorre las cajas y les da la funcion
   let espacios = cajasHtml[x];
   espacios.addEventListener("click", (o) => {
     if (estadoJuego == "jugando") {
+      //si el estado de juego es jugando el evento toque pasara
       if (espacios.innerHTML == "") {
         cambiosJugador = "X";
         infoCambio(cambiosJugador);
+        //info cambio muestra el turno en pantalla
         espacios.innerHTML = cambiosJugador;
-
+       //cada funcion valida los ganes si un gane pase el estado cambiara a jugador
         if (
           ganeFila1(cajasHtml, cambiosJugador).gano ||
           ganeFila2(cajasHtml, cambiosJugador).gano ||
@@ -67,16 +68,20 @@ for (let x = 0; x < cajasHtml.length; x++) {
           ganeDiag2(cajasHtml, cambiosJugador).gano
         ) {
           estadoJuego = "ganador";
+          //Muestra quien gano
           infoWin.innerHTML = cambiosJugador + " es el ganador!";
-          //console.log(pos(cajasHtml, cambiosJugador));
+          //tres en raya hace visibles las "rayas" dependiendo del estado de gane o cual fue el gane
           tresEnRaya(cajasHtml, cambiosJugador);
+          //restart pone el boton para volver a jugar
           setTimeout(restart, 1000);
         } else {
+          //Si un empate ocurre muestra esa info
           if (empateArray(cajasHtml)) {
             infoWin.innerHTML = "Hubo un empate";
 
             setTimeout(restart, 1000);
           } else {
+            //Si no hay un estado de gane/empate trae la funcion del bot
             estadoJuego = "Bot";
             setTimeout(
               bot,
@@ -85,6 +90,7 @@ for (let x = 0; x < cajasHtml.length; x++) {
               cambiosJugador,
               soloAgarreCamposEnBlanco(cajasHtml)
             );
+            //Estado cambia al estado a jugando para que se pueda jugar denuevo
             setTimeout(estado, 1000);
           }
         }
@@ -93,405 +99,6 @@ for (let x = 0; x < cajasHtml.length; x++) {
   });
 }
 
-// //funciones individuales
-// function tocarP0_0() {
-//   //Los toques solo ocurriran si el estado de juego siguen en "jugando" asi como el cambio de O a X
-//   //Esto para evitar errores como que al ganar se pueda seguir jugando
-//   if (estadoJuego == "jugando") {
-//     if (TicTacMatriz[0][0] == "") {
-//       //evaluara si es el campo tocado esta en blanco en la matriz, esto para evitar un error de que
-//       //al tocar un campo ya utilizado el bot juegue o se cambie de O a X y viceversa
-//       cambiosJugador = "X";
-//       //cuando el jugador toque cambiara a X
-//       infoCambio(cambiosJugador);
-//       //InfoCambio muestra en el texto informativo si el turno del jugador ocurre o el del bot
-
-//       TicTacMatriz[0][0] = cambiosJugador;
-//       //Luego igualo cambios jugador(que son las X) a la matriz principal, que su contenido se muestre
-//       //En el campo tocado(TicTacMatriz)
-//       P0_0.innerHTML = TicTacMatriz[0][0];
-//       //Luego el innerHtml del campo tocado sera igual al de la matriz asi la informacion de la matriz sera
-//       //reflejado al espacio indicado en el html del DOM
-
-//       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-//       //Luego siguen las comprobaciones de gane
-//       //Primeramente comprobara los ganes en caso de que haya un gane con tablero lleno y tome de primero el gane
-//       if (
-//         fila1(TicTacMatriz, cambiosJugador) ||
-//         fila2(TicTacMatriz, cambiosJugador) ||
-//         fila3(TicTacMatriz, cambiosJugador) ||
-//         columna1(TicTacMatriz, cambiosJugador) ||
-//         columna2(TicTacMatriz, cambiosJugador) ||
-//         columna3(TicTacMatriz, cambiosJugador) ||
-//         diagonal(TicTacMatriz, cambiosJugador) ||
-//         diagonal2(TicTacMatriz, cambiosJugador)
-//       ) {
-//         //si hay un gane el estado de juego pasara a "ganador" por ende los toques quedan bloqueados
-//         //Y asi no se podra jugar cuando haya un gane.
-
-//         estadoJuego = "ganador";
-//         infoWin.innerHTML = cambiosJugador + " es el ganador!";
-//         setTimeout(restart, 1000);
-//         tresEnRaya(TicTacMatriz, cambiosJugador);
-//         //Luego mostrara el gane
-//       } else {
-//         if (empate(TicTacMatriz)) {
-//           infoWin.innerHTML = "Hubo un empate";
-//           setTimeout(restart, 1000);
-//         } else {
-//           estadoJuego = "Bot";
-//           setTimeout(
-//             bot,
-//             1000,
-//             TicTacMatriz,
-//             cambiosJugador,
-//             soloAgarreCamposEnBlanco(TicTacMatriz)
-//           );
-//           setTimeout(estado, 1000);
-//         }
-//       }
-//     }
-//   }
-// }
-
-// function tocarP0_1() {
-//   if (estadoJuego == "jugando") {
-//     if (TicTacMatriz[0][1] == "") {
-//       cambiosJugador = "X";
-//       infoCambio(cambiosJugador);
-//       TicTacMatriz[0][1] = cambiosJugador;
-//       P0_1.innerHTML = TicTacMatriz[0][1];
-//       if (
-//         fila1(TicTacMatriz, cambiosJugador) ||
-//         fila2(TicTacMatriz, cambiosJugador) ||
-//         fila3(TicTacMatriz, cambiosJugador) ||
-//         columna1(TicTacMatriz, cambiosJugador) ||
-//         columna2(TicTacMatriz, cambiosJugador) ||
-//         columna3(TicTacMatriz, cambiosJugador) ||
-//         diagonal(TicTacMatriz, cambiosJugador) ||
-//         diagonal2(TicTacMatriz, cambiosJugador)
-//       ) {
-//         estadoJuego = "ganador";
-//         infoWin.innerHTML = cambiosJugador + " es el ganador!";
-//         setTimeout(restart, 1000);
-//         tresEnRaya(TicTacMatriz, cambiosJugador);
-//       } else {
-//         if (empate(TicTacMatriz)) {
-//           infoWin.innerHTML = "Hubo un empate";
-//           setTimeout(restart, 1000);
-//         } else {
-//           estadoJuego = "Bot";
-//           setTimeout(
-//             bot,
-//             1000,
-//             TicTacMatriz,
-//             cambiosJugador,
-//             soloAgarreCamposEnBlanco(TicTacMatriz)
-//           );
-//           setTimeout(estado, 1000);
-//         }
-//       }
-//       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-//     }
-//   }
-// }
-
-// function tocarP0_2() {
-//   if (estadoJuego == "jugando") {
-//     if (TicTacMatriz[0][2] == "") {
-//       cambiosJugador = "X";
-//       infoCambio(cambiosJugador);
-//       TicTacMatriz[0][2] = cambiosJugador;
-//       P0_2.innerHTML = TicTacMatriz[0][2];
-//       if (
-//         fila1(TicTacMatriz, cambiosJugador) ||
-//         fila2(TicTacMatriz, cambiosJugador) ||
-//         fila3(TicTacMatriz, cambiosJugador) ||
-//         columna1(TicTacMatriz, cambiosJugador) ||
-//         columna2(TicTacMatriz, cambiosJugador) ||
-//         columna3(TicTacMatriz, cambiosJugador) ||
-//         diagonal(TicTacMatriz, cambiosJugador) ||
-//         diagonal2(TicTacMatriz, cambiosJugador)
-//       ) {
-//         estadoJuego = "ganador";
-//         infoWin.innerHTML = cambiosJugador + " es el ganador!";
-//         setTimeout(restart, 1000);
-//         tresEnRaya(TicTacMatriz, cambiosJugador);
-//       } else {
-//         if (empate(TicTacMatriz)) {
-//           infoWin.innerHTML = "Hubo un empate";
-//           setTimeout(restart, 1000);
-//         } else {
-//           estadoJuego = "Bot";
-//           setTimeout(
-//             bot,
-//             1000,
-//             TicTacMatriz,
-//             cambiosJugador,
-//             soloAgarreCamposEnBlanco(TicTacMatriz)
-//           );
-//           setTimeout(estado, 1000);
-//         }
-//       }
-//       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-//     }
-//   }
-// }
-// //fila 1
-// function tocarP1_0() {
-//   if (estadoJuego == "jugando") {
-//     if (TicTacMatriz[1][0] == "") {
-//       cambiosJugador = "X";
-//       infoCambio(cambiosJugador);
-//       TicTacMatriz[1][0] = cambiosJugador;
-//       P1_0.innerHTML = TicTacMatriz[1][0];
-//       if (
-//         fila1(TicTacMatriz, cambiosJugador) ||
-//         fila2(TicTacMatriz, cambiosJugador) ||
-//         fila3(TicTacMatriz, cambiosJugador) ||
-//         columna1(TicTacMatriz, cambiosJugador) ||
-//         columna2(TicTacMatriz, cambiosJugador) ||
-//         columna3(TicTacMatriz, cambiosJugador) ||
-//         diagonal(TicTacMatriz, cambiosJugador) ||
-//         diagonal2(TicTacMatriz, cambiosJugador)
-//       ) {
-//         estadoJuego = "ganador";
-//         infoWin.innerHTML = cambiosJugador + " es el ganador!";
-//         setTimeout(restart, 1000);
-//         tresEnRaya(TicTacMatriz, cambiosJugador);
-//       } else {
-//         if (empate(TicTacMatriz)) {
-//           infoWin.innerHTML = "Hubo un empate";
-//           setTimeout(restart, 1000);
-//         } else {
-//           estadoJuego = "Bot";
-//           setTimeout(
-//             bot,
-//             1000,
-//             TicTacMatriz,
-//             cambiosJugador,
-//             soloAgarreCamposEnBlanco(TicTacMatriz)
-//           );
-//           setTimeout(estado, 1000);
-//         }
-//       }
-//       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-//     }
-//   }
-// }
-
-// function tocarP1_1() {
-//   if (estadoJuego == "jugando") {
-//     if (TicTacMatriz[1][1] == "") {
-//       cambiosJugador = "X";
-//       infoCambio(cambiosJugador);
-//       TicTacMatriz[1][1] = cambiosJugador;
-//       P1_1.innerHTML = TicTacMatriz[1][1];
-//       if (
-//         fila1(TicTacMatriz, cambiosJugador) ||
-//         fila2(TicTacMatriz, cambiosJugador) ||
-//         fila3(TicTacMatriz, cambiosJugador) ||
-//         columna1(TicTacMatriz, cambiosJugador) ||
-//         columna2(TicTacMatriz, cambiosJugador) ||
-//         columna3(TicTacMatriz, cambiosJugador) ||
-//         diagonal(TicTacMatriz, cambiosJugador) ||
-//         diagonal2(TicTacMatriz, cambiosJugador)
-//       ) {
-//         estadoJuego = "ganador";
-//         infoWin.innerHTML = cambiosJugador + " es el ganador!";
-//         setTimeout(restart, 1000);
-//         tresEnRaya(TicTacMatriz, cambiosJugador);
-//       } else {
-//         if (empate(TicTacMatriz)) {
-//           infoWin.innerHTML = "Hubo un empate";
-//           setTimeout(restart, 1000);
-//         } else {
-//           estadoJuego = "Bot";
-//           setTimeout(
-//             bot,
-//             1000,
-//             TicTacMatriz,
-//             cambiosJugador,
-//             soloAgarreCamposEnBlanco(TicTacMatriz)
-//           );
-//           setTimeout(estado, 1000);
-//         }
-//       }
-//       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-//     }
-//   }
-// }
-
-// function tocarP1_2() {
-//   if (estadoJuego == "jugando") {
-//     if (TicTacMatriz[1][2] == "") {
-//       cambiosJugador = "X";
-//       infoCambio(cambiosJugador);
-//       TicTacMatriz[1][2] = cambiosJugador;
-//       P1_2.innerHTML = TicTacMatriz[1][2];
-//       if (
-//         fila1(TicTacMatriz, cambiosJugador) ||
-//         fila2(TicTacMatriz, cambiosJugador) ||
-//         fila3(TicTacMatriz, cambiosJugador) ||
-//         columna1(TicTacMatriz, cambiosJugador) ||
-//         columna2(TicTacMatriz, cambiosJugador) ||
-//         columna3(TicTacMatriz, cambiosJugador) ||
-//         diagonal(TicTacMatriz, cambiosJugador) ||
-//         diagonal2(TicTacMatriz, cambiosJugador)
-//       ) {
-//         estadoJuego = "ganador";
-//         infoWin.innerHTML = cambiosJugador + " es el ganador!";
-//         setTimeout(restart, 1000);
-//         tresEnRaya(TicTacMatriz, cambiosJugador);
-//       } else {
-//         if (empate(TicTacMatriz)) {
-//           infoWin.innerHTML = "Hubo un empate";
-//           setTimeout(restart, 1000);
-//         } else {
-//           estadoJuego = "Bot";
-//           setTimeout(
-//             bot,
-//             1000,
-//             TicTacMatriz,
-//             cambiosJugador,
-//             soloAgarreCamposEnBlanco(TicTacMatriz)
-//           );
-//           setTimeout(estado, 1000);
-//         }
-//       }
-
-//       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-//     }
-//   }
-// }
-// //fila 2
-// function tocarP2_0() {
-//   if (estadoJuego == "jugando") {
-//     if (TicTacMatriz[2][0] == "") {
-//       cambiosJugador = "X";
-//       infoCambio(cambiosJugador);
-//       TicTacMatriz[2][0] = cambiosJugador;
-//       P2_0.innerHTML = TicTacMatriz[2][0];
-//       if (
-//         fila1(TicTacMatriz, cambiosJugador) ||
-//         fila2(TicTacMatriz, cambiosJugador) ||
-//         fila3(TicTacMatriz, cambiosJugador) ||
-//         columna1(TicTacMatriz, cambiosJugador) ||
-//         columna2(TicTacMatriz, cambiosJugador) ||
-//         columna3(TicTacMatriz, cambiosJugador) ||
-//         diagonal(TicTacMatriz, cambiosJugador) ||
-//         diagonal2(TicTacMatriz, cambiosJugador)
-//       ) {
-//         estadoJuego = "ganador";
-//         infoWin.innerHTML = cambiosJugador + " es el ganador!";
-//         setTimeout(restart, 1000);
-//         tresEnRaya(TicTacMatriz, cambiosJugador);
-//       } else {
-//         if (empate(TicTacMatriz)) {
-//           infoWin.innerHTML = "Hubo un empate";
-//           setTimeout(restart, 1000);
-//         } else {
-//           estadoJuego = "Bot";
-//           setTimeout(
-//             bot,
-//             1000,
-//             TicTacMatriz,
-//             cambiosJugador,
-//             soloAgarreCamposEnBlanco(TicTacMatriz)
-//           );
-//           setTimeout(estado, 1000);
-//         }
-//       }
-//       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-//     }
-//   }
-// }
-
-// function tocarP2_1() {
-//   if (estadoJuego == "jugando") {
-//     if (TicTacMatriz[2][1] == "") {
-//       cambiosJugador = "X";
-//       infoCambio(cambiosJugador);
-//       TicTacMatriz[2][1] = cambiosJugador;
-//       P2_1.innerHTML = TicTacMatriz[2][1];
-//       if (
-//         fila1(TicTacMatriz, cambiosJugador) ||
-//         fila2(TicTacMatriz, cambiosJugador) ||
-//         fila3(TicTacMatriz, cambiosJugador) ||
-//         columna1(TicTacMatriz, cambiosJugador) ||
-//         columna2(TicTacMatriz, cambiosJugador) ||
-//         columna3(TicTacMatriz, cambiosJugador) ||
-//         diagonal(TicTacMatriz, cambiosJugador) ||
-//         diagonal2(TicTacMatriz, cambiosJugador)
-//       ) {
-//         estadoJuego = "ganador";
-//         infoWin.innerHTML = cambiosJugador + " es el ganador!";
-//         setTimeout(restart, 1000);
-//         tresEnRaya(TicTacMatriz, cambiosJugador);
-//       } else {
-//         if (empate(TicTacMatriz)) {
-//           infoWin.innerHTML = "Hubo un empate";
-//           setTimeout(restart, 1000);
-//         } else {
-//           estadoJuego = "Bot";
-//           setTimeout(
-//             bot,
-//             1000,
-//             TicTacMatriz,
-//             cambiosJugador,
-//             soloAgarreCamposEnBlanco(TicTacMatriz)
-//           );
-//           setTimeout(estado, 1000);
-//         }
-//       }
-
-//       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-//     }
-//   }
-// }
-
-// function tocarP2_2() {
-//   if (estadoJuego == "jugando") {
-//     if (TicTacMatriz[2][2] == "") {
-//       cambiosJugador = "X";
-//       infoCambio(cambiosJugador);
-//       TicTacMatriz[2][2] = cambiosJugador;
-//       P2_2.innerHTML = TicTacMatriz[2][2];
-//       if (
-//         fila1(TicTacMatriz, cambiosJugador) ||
-//         fila2(TicTacMatriz, cambiosJugador) ||
-//         fila3(TicTacMatriz, cambiosJugador) ||
-//         columna1(TicTacMatriz, cambiosJugador) ||
-//         columna2(TicTacMatriz, cambiosJugador) ||
-//         columna3(TicTacMatriz, cambiosJugador) ||
-//         diagonal(TicTacMatriz, cambiosJugador) ||
-//         diagonal2(TicTacMatriz, cambiosJugador)
-//       ) {
-//         estadoJuego = "ganador";
-//         infoWin.innerHTML = cambiosJugador + " es el ganador!";
-//         setTimeout(restart, 1000);
-//         tresEnRaya(TicTacMatriz, cambiosJugador);
-//       } else {
-//         if (empate(TicTacMatriz)) {
-//           infoWin.innerHTML = "Hubo un empate";
-//           setTimeout(restart, 1000);
-//         } else {
-//           estadoJuego = "Bot";
-//           setTimeout(
-//             bot,
-//             1000,
-//             TicTacMatriz,
-//             cambiosJugador,
-//             soloAgarreCamposEnBlanco(TicTacMatriz)
-//           );
-//           setTimeout(estado, 1000);
-//         }
-//       }
-
-//       //console.log(soloAgarreCamposEnBlanco(TicTacMatriz));
-//     }
-//   }
-// }
 
 ////////////////////////////////////////////
 function infoCambio(cambiosJugador) {
@@ -502,147 +109,18 @@ function infoCambio(cambiosJugador) {
   }
 }
 
-// //fors recoren filas en busca de gane-filas
-// function fila1(matriz, cambiosJugador) {
-//   let cont = 0;
-//   for (let index = 0; index < 3; index++) {
-//     if (matriz[0][index] == cambiosJugador) {
-//       cont++;
-//     }
-//   }
 
-//   if (cont == 3) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-
-// function fila2(matriz, cambiosJugador) {
-//   let cont = 0;
-//   for (let index = 0; index < 3; index++) {
-//     if (matriz[1][index] == cambiosJugador) {
-//       cont++;
-//     }
-//   }
-
-//   if (cont == 3) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-
-// function fila3(matriz, cambiosJugador) {
-//   let cont = 0;
-//   for (let index = 0; index < 3; index++) {
-//     if (matriz[2][index] == cambiosJugador) {
-//       cont++;
-//     }
-//   }
-
-//   if (cont == 3) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-// //fors recoren filas en busca de gane-columnas
-// function columna1(matriz, cambiosJugador) {
-//   let cont = 0;
-//   for (let index = 0; index < 3; index++) {
-//     if (matriz[index][0] == cambiosJugador) {
-//       cont++;
-//     }
-//   }
-
-//   if (cont == 3) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-
-// function columna2(matriz, cambiosJugador) {
-//   let cont = 0;
-//   for (let index = 0; index < 3; index++) {
-//     if (matriz[index][1] == cambiosJugador) {
-//       cont++;
-//     }
-//   }
-
-//   if (cont == 3) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-
-// function columna3(matriz, cambiosJugador) {
-//   let cont = 0;
-//   for (let index = 0; index < 3; index++) {
-//     if (matriz[index][2] == cambiosJugador) {
-//       cont++;
-//     }
-//   }
-
-//   if (cont == 3) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-// // fors compara diagonales
-// function diagonal(matriz, cambiosJugador) {
-//   if (
-//     matriz[0][0] == cambiosJugador &&
-//     matriz[1][1] == cambiosJugador &&
-//     matriz[2][2] == cambiosJugador
-//   ) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-
-// function diagonal2(matriz, cambiosJugador) {
-//   if (
-//     matriz[0][2] == cambiosJugador &&
-//     matriz[1][1] == cambiosJugador &&
-//     matriz[2][0] == cambiosJugador
-//   ) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-// //empate
-// function empate(matriz) {
-//   if (
-//     matriz[0][0] != "" &&
-//     matriz[0][1] != "" &&
-//     matriz[0][2] != "" &&
-//     matriz[1][0] != "" &&
-//     matriz[1][1] != "" &&
-//     matriz[1][2] != "" &&
-//     matriz[2][0] != "" &&
-//     matriz[2][1] != "" &&
-//     matriz[2][2] != ""
-//   ) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
 //funcion bot
 function bot(array, cambiosJugador, coordenadas) {
   estadoJuego = "Bot";
+  //El bot ocupara o
   cambiosJugador = "O";
 
   if (estadoJuego == "Bot") {
     infoCambio(cambiosJugador);
+    //Sus coordenadas vienen de la funcion "soloAgarreCamposEnBlanco"
     array[coordenadas].innerHTML = cambiosJugador;
-
+   //ES practimante lo mismo a la funcion de toques del jugador
     if (
       ganeFila1(cajasHtml, cambiosJugador).gano ||
       ganeFila2(cajasHtml, cambiosJugador).gano ||
@@ -668,6 +146,27 @@ function bot(array, cambiosJugador, coordenadas) {
   }
 }
 //Bloqueo de jugadas pinza
+//Lo siguiente son validaciones de estados de juego que pueden pasar para volver al bot mas dificil ya que minimax no me funciono(algunos quemados otros con for)
+function blockCentroX(array) {
+  let contador = 0;
+  if (array[4].innerHTML == "X") {
+    contador++;
+  }
+
+  if (contador == 1) {
+    if (array[0].innerHTML == "") {
+      return 0;
+    } else if (array[2].innerHTML == "") {
+      return 2
+    } else if (array[8].innerHTML == "") {
+      return 8
+    } else if (array[6].innerHTML == "") {
+      return 6
+    }
+  } else {
+    return null;
+  }
+}
 function blockCentro(array) {
   let contador = 0;
   if (array[4].innerHTML == "") {
@@ -677,6 +176,85 @@ function blockCentro(array) {
   if (contador == 1) {
     if (array[4].innerHTML == "") {
       return 4;
+    }
+  } else {
+    return null;
+  }
+}
+function blockEstrategiaCentro(array) {
+  let contador = 0;
+  if (array[4].innerHTML == "X") {
+    contador++;
+  }
+  if (array[0].innerHTML == "X") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[8].innerHTML == "") {
+      return 8;
+    } else if (array[2].innerHTML == "") {
+      return 2
+    }
+  } else {
+    return null;
+  }
+}
+
+function blockEstrategiaCentro2(array) {
+  let contador = 0;
+  if (array[4].innerHTML == "X") {
+    contador++;
+  }
+  if (array[6].innerHTML == "X") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[2].innerHTML == "") {
+      return 2;
+    } else if (array[8].innerHTML == "") {
+      return 8
+    }
+  } else {
+    return null;
+  }
+}
+
+function blockEstrategiaCentro3(array) {
+  let contador = 0;
+  if (array[4].innerHTML == "X") {
+    contador++;
+  }
+  if (array[2].innerHTML == "X") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[6].innerHTML == "") {
+      return 6;
+    } else if (array[0].innerHTML == "") {
+      return 0
+    }
+  } else {
+    return null;
+  }
+}
+
+function blockEstrategiaCentro5(array) {
+  let contador = 0;
+  if (array[4].innerHTML == "X") {
+    contador++;
+  }
+  if (array[8].innerHTML == "X") {
+    contador++;
+  }
+
+  if (contador == 2) {
+    if (array[0].innerHTML == "") {
+      return 0;
+    } else if (array[6].innerHTML == "") {
+      return 6
     }
   } else {
     return null;
@@ -1130,11 +708,20 @@ function blocks3(array) {
     return null;
   }
 }
+//Como las fuciones de oportunidades de bloqueo / oportunidad de gane / Bloqueo de estrategias son algo extensas las explicare aqui
+//Ya que todas tienen una logica parecida a las comprobaciones de gane
+//Los bloqueos revisara la fila/Diagonal/columna indicada y si ve dos X alineadas mandara la posicion a bloquear (frenar al jugador)
+//Las oportunidades de gane haram lo mismo pero vera si en una fila/columna/diagonal hay dos O alineadas para devolver la posicion faltante 
+//Los bloqueos de estrategia son situaciones del tablero que observe mientras probaba, lo que hara es mandar la posicion indicada para cortar esa
+//estrategia en especifico
+//el bot no es imposible pero no es tan facil
+//Esta funcion comprueba los estado de juego actual y dependiendo si alguna de las situaciones antes mencionadas ocurre devulve la coordenada predeterminada
 function soloAgarreCamposEnBlanco(array) {
   let bloqueo = false;
   let oportunidadGane = false;
   let estrategia = false;
-
+//Funciona de esta manera Primero comprueba alguna situacion en la que el tenga una oportunidad de ganar este disponible en el tablero
+//Tomara esa coordenada de gane otorgada pos las funciones de gane (para todos los casos)
   if (diagGane(array) != null) {
     oportunidadGane = true;
     return diagGane(array);
@@ -1167,8 +754,30 @@ function soloAgarreCamposEnBlanco(array) {
     oportunidadGane = true;
     return gane3(array);
   }
-
+//Luego si no hay ninguna oportunidad de gane inmediato revisara algunas posibilidad de que haya alguna estrategia estilo pinza que pueda pasar
+//(Solo revisara las que yo coloque en esas funciones de BlockStrategy o BlockCentro), por ende no cubre todas las existentes
   if (oportunidadGane == false) {
+   if (blockEstrategiaCentro5(array) != null) {
+      estrategia = true;
+      console.log(estrategia);
+      return blockEstrategiaCentro5(array);
+    }
+  
+  if (blockEstrategiaCentro3(array) != null) {
+      estrategia = true;
+      console.log(estrategia);
+      return blockEstrategiaCentro3(array);
+    }
+  if (blockEstrategiaCentro2(array) != null) {
+      estrategia = true;
+      console.log(estrategia);
+      return blockEstrategiaCentro2(array);
+    }
+  if (blockEstrategiaCentro(array) != null) {
+      estrategia = true;
+      console.log(estrategia);
+      return blockEstrategiaCentro(array);
+    }
     if (blockCentro(array) != null) {
       estrategia = true;
       console.log(estrategia);
@@ -1195,7 +804,8 @@ function soloAgarreCamposEnBlanco(array) {
       return blockEstrategia(array);
     }
   }
-
+//SI no hay algun indicio de una estrategia o gane inmediato en el tablero, tomara las coordenadas de las funciones de bloqueo
+//En otras palabras tomara las coordenadas donde vea oportunidad de frenar al jugador de un gane en su siguiente turno (las funcion BLockDiag o Block column haran esas validaciones de posible bloqueo)
   if (estrategia == false && oportunidadGane == false) {
     if (blockDiagonal2(array) != null) {
       bloqueo = true;
@@ -1230,11 +840,16 @@ function soloAgarreCamposEnBlanco(array) {
       return blocks3(array);
     }
   }
+  //Como caso final si las validacione de algun bloqueo o alguna oportunidad de gane no ocurran hara un movmiento random utilizando
+  //MathRandom y mathFloor
   if (bloqueo == false && oportunidadGane == false) {
     let loop = 0;
     while (loop == 0) {
+    //Necesitaba que me tirara numeros random del 1 al 8 infinitamente para luego filtrarlo con una condicion
+    //Por eso utilize un while
       let fila = Math.floor(Math.random() * 9);
       let vacio = array[fila].innerHTML;
+      //hara una validacion si el espacio usando el numero dado esta en blanco devuelvelo
       if (vacio == "") {
         return fila;
       }
@@ -1242,158 +857,7 @@ function soloAgarreCamposEnBlanco(array) {
   }
 }
 
-//Valores de gane
-function GanesValor(cajasHtml, cambiosJugador) {
-  let valor;
-  let ganes = [
-    ganeFila1(cajasHtml, cambiosJugador),
-    ganeFila2(cajasHtml, cambiosJugador),
-    ganeFila3(cajasHtml, cambiosJugador),
-    ganeColumna1(cajasHtml, cambiosJugador),
-    ganeColumna2(cajasHtml, cambiosJugador),
-    ganeColumna3(cajasHtml, cambiosJugador),
-    ganeDiag(cajasHtml, cambiosJugador),
-    ganeDiag2(cajasHtml, cambiosJugador),
-  ];
 
-  let quienGano;
-  for (let o = 0; o < ganes.length; o++) {
-    let gano = ganes[o].gano;
-    if (gano == true) {
-      quienGano = ganes[o].quien;
-    }
-  }
-  if (quienGano == "X") {
-    valor = 1;
-    return valor;
-  } else if (quienGano == "O") {
-    valor = -1;
-    return valor;
-  }
-  let empate = empateArray(cajasHtml, cambiosJugador);
-  if (empate == true) {
-    valor = 0;
-    return valor;
-  }
-}
-
-//////////FUNCION RAMIFICACION/////////////
-// function pos(array, jugador) {
-//   // let jugadaActual = [];
-//   // //Lee la jugada actual del tablero y lo pushea a jugadaActual
-//   // for (let x = 0; x < array.length; x++) {
-//   //   let reader = array[x].innerHTML;
-
-//   //   jugadaActual.push(reader);
-//   // }
-//   // console.log(jugadaActual);
-//   // //Revisa cuantos espacios en blanco hay
-//   // let blanco = 0;
-//   // for (let i = 0; i < jugadaActual.length; i++) {
-//   //   let reader2 = jugadaActual[i];
-
-//   //   if (reader2 == "") {
-//   //     blanco++;
-//   //   }
-//   // }
-//   // // Lee jugada actual y se fija cuales espacios estan en blanco (Posiciones)
-//   let mejorPuntaje = -Infinity;
-//   //Es mejor conaiderar la peor situacion de puntaje (que seria -infinito)
-//   let mejorCordenada;
-//   //La mejor cordenada sera escpjida dependiendo del puntaje del min o max
-//   for (let c = 0; c <= 8; c++) {
-
-//     if (array[c].innerHTML == "") {
-//       //array[c].innerHTML = jugador
-//       array[c].innerHTML = "O";
-//       let puntaje = miniMaxPrueba(array, 0, true, jugador);
-//       array[c].innerHTML = "";
-//       //El puntaje sera puesto por minimax si dicho puntaje llega ser maximo entoces agarralo
-//       if (puntaje > mejorPuntaje) {
-//         //La coordenada solo se mandara si el puntaje otorgado por minimax llega a ser mayor al mejor puntaje
-//         mejorPuntaje = puntaje;
-//         mejorCordenada = c;
-//       }
-//       //Necesito agarrar esos casos y ponerlos en lista!!!
-//     }
-//   }
-//   console.log(mejorCordenada);
-// }
-
-// function miniMaxPrueba(array, numeroRamas, max, jugador) {
-//   if (GanesValor(array, jugador) != "") {
-//     return GanesValor(cajasHtml, cambiosJugador);
-//   }
-
-//   if (max) {
-//     let mejorPuntaje = -Infinity;
-//     for (let c = 0; c <= 8; c++) {
-//       let vacio3 = array[c].innerHTML;
-//       if (vacio3 == "") {
-//         //array[c].innerHTML = jugador
-//         array[c].innerHTML = "O";
-//         let puntaje = miniMaxPrueba(array, numeroRamas + 1, true);
-//         console.log(vacio3);
-//         array[c].innerHTML = "";
-//         //El puntaje sera puesto por minimax si dicho puntaje llega ser maximo entoces agarralo
-//         if (puntaje > mejorPuntaje) {
-//           //La coordenada solo se mandara si el puntaje otorgado por minimax llega a ser mayor al mejor puntaje
-//           mejorPuntaje = puntaje;
-//         }
-//       }
-//     }
-//     return mejorPuntaje;
-//   } else {
-//     let mejorPuntaje = Infinity;
-//     for (let c = 0; c <= 8; c++) {
-//       let vacio3 = array[c].innerHTML;
-//       if (vacio3 == "") {
-
-//         array[c].innerHTML = "X";
-//         let puntaje = miniMaxPrueba(array, numeroRamas + 1, false);
-//         array[c].innerHTML = "";
-//         //El puntaje sera puesto por minimax si dicho puntaje llega ser maximo entoces agarralo
-//         if (puntaje < mejorPuntaje) {
-//           //La coordenada solo se mandara si el puntaje otorgado por minimax llega a ser mayor al mejor puntaje
-//           mejorPuntaje = puntaje;
-//         }
-//       }
-//     }
-//     return mejorPuntaje;
-//   }
-// }
-//////////FUNCION RAMIFICACION/////////////
-// function soloAgarreCamposEnBlancoAvanzado(matriz) {
-//   let loop = 0;
-//   while (loop == 0) {
-//     let fila = Math.floor(Math.random() * 3);
-//     let columna = Math.floor(Math.random() * 3);
-//     let vacio = matriz[fila][columna];
-
-//     // if (matriz[0][0] == 'X' && matriz [0][2]== 'X' &&  matriz[0][1] == '') {
-//     // let bloqueo1 = [0, 1]
-//     // return bloqueo1
-//     // } else {
-
-//     // }
-//     if (vacio == "") {
-//       return Array.from(fila + "" + columna);
-//     }
-//   }
-// }
-
-/*function soloAgarreCamposEnBlanco2() {
-  while (hola2 == 0) {
-    let columna2 = Math.floor(Math.random() * 3);
-    let fila2 = Math.floor(Math.random() * 3);
-    let posicion2 = TicTacMatriz[fila2][columna2];
-
-    if (posicion2 == "") {
-      return columna2;
-    }
-  }
-}
-*/
 
 //cambia estado juego
 // NO borrar
@@ -1406,8 +870,12 @@ function estado() {
 //funcion tres en raya
 // no borrar
 function tresEnRaya(matriz, cambiosJugador) {
+//esta funcion tambien toma el tablero y al jugador
+//tres en raya tomara como referencia a las validaciones de gane para hacer visible la imagen oculta de la raya en donde 
+//Ocurra ese gane
   if (ganeFila1(matriz, cambiosJugador)) {
     document.getElementById("fila1Gane").style.visibility = "visible";
+    //es la misma logica para todas las comprobacionesde gane
   }
 
   if (ganeFila2(matriz, cambiosJugador)) {
@@ -1440,40 +908,31 @@ function tresEnRaya(matriz, cambiosJugador) {
 }
 
 //comprobaciones de bloqueo
-function bloqueos(matriz) {
-  let fila1Validacion = 0;
-}
-//MinMax pruebas
-// let matrizPequeña = [
-// ['o', 'o', 'x'],
-// ['x', 'o', 'o'],
-// ['x', 'x', 'x']
-// ]
-// for (let o = 0; o < matrizPequeña.length; o++) {
-//   let fila = matrizPequeña[o];
-//   for (let i = 0; i < fila.length; i++) {
-//     let columna = fila[i];
-//     console.log(columna);
-//   }
-// }
+
+
 
 // NO BORRARR
 //For de array sola
+//Las siquientes son comprobaciones de gane
 function ganeFila1(array, cambiosJugador) {
   let contador = 0;
   for (let x = 0; x <= 2; x++) {
     const ganeFila1 = array[x].innerHTML;
+    //Revisara el estado de una fila en especico y si llega a ver el mismo jugador en esa fila
+    //le sumara al contaodor 1
 
     if (ganeFila1 == cambiosJugador) {
       contador++;
     }
   }
   if (contador == 3) {
+  //si eso se repite 3 veces, que el contador llegue a 3 dara un objeto informando que alguien gano y quien gano
     return { gano: true, quien: cambiosJugador };
   } else {
     return false;
   }
 }
+//Esta misma logica es utilizada para todas las filas
 function ganeFila2(array, cambiosJugador) {
   let contador = 0;
   for (let x = 3; x <= 5; x++) {
@@ -1505,7 +964,9 @@ function ganeFila3(array, cambiosJugador) {
     return false;
   }
 }
-
+//Los ganes de columna si son posiciones quemadas que comprabara si el jugador esta en esas posiciones
+//Y devolvera si alguien gano junto con quien
+//Es las misma logica para todas las columnas 
 function ganeColumna1(array, cambiosJugador) {
   if (
     array[0].innerHTML == cambiosJugador &&
@@ -1540,7 +1001,8 @@ function ganeColumna3(array, cambiosJugador) {
     return false;
   }
 }
-
+//las comprobaciones de las diagonales son en escencia lo mismo a las columnas 
+//La logica es la misma
 function ganeDiag(array, cambiosJugador) {
   if (
     array[0].innerHTML == cambiosJugador &&
@@ -1566,6 +1028,8 @@ function ganeDiag2(array, cambiosJugador) {
 }
 
 //for para empate
+//Empate revisara todo el array(tablero) con un for y si todo esta lleno
+//Enviara un booleano de true
 function empateArray(array) {
   let contador = 0;
   for (let z = 0; z < array.length; z++) {
@@ -1576,6 +1040,7 @@ function empateArray(array) {
     }
   }
   if (contador == 9) {
+  //esta vez el contador llega a 9 (por los 9 espacios)
     return true;
   } else {
     return false;
